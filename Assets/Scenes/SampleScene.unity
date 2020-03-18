@@ -118,6 +118,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
@@ -558,7 +560,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 596655476}
   ac: {fileID: 596655472}
-  Modifier: 100
+  Modifier: 300
   distToGround: 0.4
   MovementGroundModifier: 4
   groundMask:
