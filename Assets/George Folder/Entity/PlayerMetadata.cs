@@ -27,6 +27,8 @@ public class PlayerMetadata : MonoBehaviour
                 {
                     Body.SetFly(true);
                 }
+            } else {
+                CSLogger.L("Cannot find BalloonFighterBody or Animator");
             }
         }
         get {
@@ -42,5 +44,14 @@ public class PlayerMetadata : MonoBehaviour
 
     public void Damage() {
         Health--;
+    }
+
+    public bool DamageTrigger = false;
+
+    void Update() {
+        if (DamageTrigger) {
+            Damage();
+            DamageTrigger = false;
+        }
     }
 }
