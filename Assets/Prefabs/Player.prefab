@@ -210,7 +210,7 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 7e815f52-245d-4684-937f-9d6321a7a168
     m_ActionName: BalloonFighter/Jump[/Keyboard/space]
-  m_NeverAutoSwitchControlSchemes: 0
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: BalloonFighter
   m_SplitScreenIndex: -1
