@@ -30,6 +30,7 @@ public class BalloonFighterBody : MonoBehaviour
 
 	private float moveAmount;
 	private bool isJumping;
+	private bool canFly = true;
 	
 	public bool IsGrounded {
 		get {
@@ -76,6 +77,10 @@ public class BalloonFighterBody : MonoBehaviour
 		}
 	}
 
+	public void SetFly(bool canFly) {
+		this.canFly = canFly;
+	}
+
 	/// <summary>
 	/// Jumps/flaps, gaining altitude.
 	/// </summary>
@@ -111,16 +116,20 @@ public class BalloonFighterBody : MonoBehaviour
 
 			}
 		}
-		else if(isJumping) {
+		else if(isJumping && canFly) {
 			Vector2 dir = new Vector2(moveAmount, 1).normalized;
 			rb.AddForce(dir * flapImpulse);
 
 			anim.SetTrigger("Flap");
 		}
-
+	
 		anim.SetFloat("Movement", Mathf.Abs(moveAmount));
 		anim.SetBool("IsGrounded", IsGrounded);
-		anim.SetFloat("Dir", moveAmount);
+		if (moveAmount != 0) {
+			anim.SetFloat("Dir", moveAmount);
+		}
+
+		anim.SetFloat("PhysicsX", Mathf.Abs(rb.velocity.x));
 
 		ResetControlVars();
 	}
