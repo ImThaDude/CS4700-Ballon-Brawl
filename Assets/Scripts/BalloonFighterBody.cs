@@ -1,20 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// This handles the mechanics for the balloon fighter's movement.
+/// It handles movement, flapping, jumping, etc.
+///
+/// An outside script/component must fire off the functions
+/// to control what happens.
+/// </summary>
 public class BalloonFighterBody : MonoBehaviour
 {
 	public Rigidbody2D rb;
 	public Animator anim;
 
+	[Space(10)]
+	[Tooltip("Used when jump is hit while airborne.")]
 	public float flapImpulse = 10f;
+	[Tooltip("Used when jump is hit while grounded.")]
+	public float jumpImpulse = 4f;
+	[Tooltip("Maximum speed while on the ground.")]
+	public float groundMovementSpeed = 4f;
 	
+	[Space(10)]
 	public float groundCastLength = 0.5f;
 	public LayerMask groundMask;
-	public float groundMovementSpeed = 4f;
-	public float jumpImpulse = 4f;
-	// TODO Create a jump impulse
 
 	private float moveAmount;
 	private bool isJumping;
@@ -30,26 +42,50 @@ public class BalloonFighterBody : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Move the character horizontally. Note that if we are in the
+	/// air and not flapping, we won't move at all.
+	///
+	/// This should get called every frame.
+	/// </summary>
+	/// <param name="context"></param>
 	public void MoveHorizontal(InputAction.CallbackContext context) {
 		MoveHorizontal(context.ReadValue<float>());
 	}
 
+	/// <summary>
+	/// Move the character horizontally. Note that if we are in the
+	/// air and not flapping, we won't move at all.
+	/// 
+	/// This should get called every frame.
+	/// </summary>
+	/// <param name="direction">
+	/// -1 is fastest to the left, and 1 is fastest to the right.
+	/// </param>
 	public void MoveHorizontal(float direction) {
 		moveAmount = direction;
-
-		//Debug.Log(direction);
 	}
 
+	/// <summary>
+	/// Jumps/flaps, gaining altitude.
+	/// </summary>
+	/// <param name="context"></param>
 	public void Jump(InputAction.CallbackContext context) {
 		if(context.performed) {
 			Jump();
 		}
 	}
 
+	/// <summary>
+	/// Jumps/flaps, gaining altitude.
+	/// </summary>
 	public void Jump() {
 		isJumping = true;
+	}
 
-		//Debug.Log("Jumping");
+	private void Awake() {
+		Assert.IsNotNull(rb);
+		Assert.IsNotNull(anim);
 	}
 
 	private void OnEnable() {
@@ -59,10 +95,6 @@ public class BalloonFighterBody : MonoBehaviour
 	private void Update()
 	{
 		//Vector2 dir = new Vector2(moveAmount, 0);
-
-		if(isJumping) {
-			Debug.Log("On jump, is on ground? " + IsGrounded);
-		}
 
 		if(IsGrounded) {
 
@@ -86,7 +118,6 @@ public class BalloonFighterBody : MonoBehaviour
 			anim.SetTrigger("Flap");
 		}
 
-		// TODO add animation stuff
 		anim.SetFloat("Movement", Mathf.Abs(moveAmount));
 		anim.SetBool("IsGrounded", IsGrounded);
 		anim.SetFloat("Dir", moveAmount);
@@ -94,6 +125,9 @@ public class BalloonFighterBody : MonoBehaviour
 		ResetControlVars();
 	}
 
+	/// <summary>
+	/// Reverts whatever control inputs were given.
+	/// </summary>
 	private void ResetControlVars() {
 		//dir = Vector2.zero;
 		isJumping = false;
