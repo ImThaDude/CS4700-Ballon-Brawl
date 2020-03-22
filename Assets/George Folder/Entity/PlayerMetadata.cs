@@ -15,7 +15,8 @@ public class PlayerMetadata : MonoBehaviour
             {
                 anim.SetFloat("HP", Health);
 
-                if (Health < -0.1) {
+                if (Health < -0.1)
+                {
                     Destroy(transform);
                 }
 
@@ -27,11 +28,14 @@ public class PlayerMetadata : MonoBehaviour
                 {
                     Body.SetFly(true);
                 }
-            } else {
+            }
+            else
+            {
                 CSLogger.L("Cannot find BalloonFighterBody or Animator");
             }
         }
-        get {
+        get
+        {
             return _Health;
         }
     }
@@ -42,14 +46,43 @@ public class PlayerMetadata : MonoBehaviour
 
     public BalloonFighterBody Body;
 
-    public void Damage() {
+    public void Damage()
+    {
         Health--;
     }
 
     public bool DamageTrigger = false;
 
-    void Update() {
-        if (DamageTrigger) {
+    void Start()
+    {
+        if (Body != null && anim != null)
+        {
+            anim.SetFloat("HP", Health);
+
+            if (Health < -0.1)
+            {
+                Destroy(transform);
+            }
+
+            if (Health < 0.5)
+            {
+                Body.SetFly(false);
+            }
+            else
+            {
+                Body.SetFly(true);
+            }
+        }
+        else
+        {
+            CSLogger.L("Cannot find BalloonFighterBody or Animator");
+        }
+    }
+
+    void Update()
+    {
+        if (DamageTrigger)
+        {
             Damage();
             DamageTrigger = false;
         }
