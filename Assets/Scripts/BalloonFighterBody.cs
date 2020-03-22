@@ -145,10 +145,14 @@ public class BalloonFighterBody : MonoBehaviour
 				rb.velocity.y
 			);
 		}
-
+	
 		anim.SetFloat("Movement", Mathf.Abs(moveAmount));
 		anim.SetBool("IsGrounded", IsGrounded);
-		anim.SetFloat("Dir", moveAmount);
+		if (moveAmount != 0) {
+			anim.SetFloat("Dir", moveAmount);
+		}
+
+		anim.SetFloat("PhysicsX", Mathf.Abs(rb.velocity.x));
 
 		ResetControlVars();
 	}

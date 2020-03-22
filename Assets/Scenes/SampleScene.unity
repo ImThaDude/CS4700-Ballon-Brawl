@@ -760,6 +760,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4333710321768812608, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4333710321768812609, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
       propertyPath: m_Actions
       value: 
@@ -815,6 +819,22 @@ PrefabInstance:
     - target: {fileID: 4333710321768812613, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4333710321768812614, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1515116466437280181, guid: 389ce23748992cc438bbfe5aac8e6ec3, type: 3}
+    - target: {fileID: 4333710321768812614, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4333710321768812614, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
+      propertyPath: m_Size.x
+      value: 0.46875
+      objectReference: {fileID: 0}
+    - target: {fileID: 4333710321768812614, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
+      propertyPath: m_Size.y
+      value: 0.875
       objectReference: {fileID: 0}
     - target: {fileID: 4333710321768812632, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
       propertyPath: m_Name
