@@ -4,13 +4,40 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 6859597673606989783
+    second: Flap-One-Left_2
+  - first:
+      213: 1793637898652373855
+    second: Flap-One-Left_2
+  - first:
+      213: 4720715562469053128
+    second: Flap-One-Left_2
+  - first:
+      213: 8350498203942954883
+    second: Flap-One-Left_2
+  - first:
+      213: 750153126472169898
+    second: Flap-One-Left_2
+  - first:
+      213: 5671537809111528152
+    second: Flap-One-Left_2
+  - first:
+      213: 173898915214292665
+    second: Flap-One-Left_3
+  - first:
+      213: 626274003590477746
+    second: Flap-One-Left_4
+  - first:
+      213: 8350498203942954883
     second: Flap-One-Left_0
   - first:
       213: 1793637898652373855
     second: Flap-One-Left_1
   - first:
-      213: 4720715562469053128
-    second: Flap-One-Left_2
+      213: 7948623663956982609
+    second: Flap-One-Left_0
+  - first:
+      213: 750153126472169898
+    second: Flap-One-Left_1
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -126,28 +153,7 @@ TextureImporter:
         serializedVersion: 2
         x: 1
         y: 0
-        width: 16
-        height: 28
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7d7c07d8dbf223f50800000000000000
-      internalID: 6859597673606989783
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flap-One-Left_1
-      rect:
-        serializedVersion: 2
-        x: 15
-        y: 0
-        width: 15.666667
+        width: 15
         height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -156,8 +162,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f535adc6a2844e810800000000000000
-      internalID: 1793637898652373855
+      spriteID: 15b7b67db1f2f4e60800000000000000
+      internalID: 7948623663956982609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flap-One-Left_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 15
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa9b5864b44196a00800000000000000
+      internalID: 750153126472169898
       vertices: []
       indices: 
       edges: []
@@ -166,9 +193,9 @@ TextureImporter:
       name: Flap-One-Left_2
       rect:
         serializedVersion: 2
-        x: 30
+        x: 31
         y: 0
-        width: 15.666667
+        width: 15
         height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
