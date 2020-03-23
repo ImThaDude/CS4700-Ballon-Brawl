@@ -98,6 +98,31 @@ public class BalloonFighterBody : MonoBehaviour
 	private void Update()
 	{
 		//Vector2 dir = new Vector2(moveAmount, 0);
+		
+		//More george invasion of the code
+		if (isFloating) {
+			Vector2 v = rb.velocity;
+			v.y = Mathf.Lerp (v.y, -floatVelocity, floatClampLerp);
+			rb.velocity = v;
+		}
+
+		if (IsGrounded) {
+			isFloating = false;
+
+			if (hasFainted) {
+				//Destroy(gameObject);
+				hasFainted = false;
+			}
+
+			if (moveAmount == 0) {
+				isIdle = true;
+			} else {
+				isIdle = false;
+			}
+		} else {
+			isIdle = false;
+		}
+		//-------------------------------
 
 		/*
 		if(IsGrounded) {
@@ -151,8 +176,6 @@ public class BalloonFighterBody : MonoBehaviour
 		if (moveAmount != 0) {
 			anim.SetFloat("Dir", moveAmount);
 		}
-
-		anim.SetFloat("PhysicsX", Mathf.Abs(rb.velocity.x));
 
 		ResetControlVars();
 	}
