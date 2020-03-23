@@ -5,34 +5,12 @@ using UnityEngine;
 public class PlayerMetadata : MonoBehaviour
 {
 
-    public int _Health = 3;
+    public int _Health = 2;
     public int Health
     {
         set
         {
-            _Health = value;
-            if (Body != null && anim != null)
-            {
-                anim.SetFloat("HP", Health);
-
-                if (Health < -0.1)
-                {
-                    Destroy(transform);
-                }
-
-                if (Health < 0.5)
-                {
-                    Body.SetFly(false);
-                }
-                else
-                {
-                    Body.SetFly(true);
-                }
-            }
-            else
-            {
-                CSLogger.L("Cannot find BalloonFighterBody or Animator");
-            }
+            RenderHealth(value);
         }
         get
         {
@@ -46,37 +24,64 @@ public class PlayerMetadata : MonoBehaviour
 
     public BalloonFighterBody Body;
 
+    public AudioClip BalloonPop;
+    public AudioClip BalloonRecover;
+
+    public float OneBalloonRecoveryTime = 15f;
+    float currBallonRecoveryTime = 0;
+
     public void Damage()
     {
+        if (BalloonPop != null) {
+            AudioSource.PlayClipAtPoint(BalloonPop, transform.position);
+        } else {
+            CSLogger.L("BalloonPop clip as not been assigned.");
+        }
         Health--;
     }
 
-    public bool DamageTrigger = false;
+    public void RestoreBalloon() {
+        if (BalloonRecover != null) {
+            AudioSource.PlayClipAtPoint(BalloonRecover, transform.position);
+        } else {
+            CSLogger.L("BalloonRecover clip as not been assigned.");
+        }
+        Health++;
+    }
 
-    void Start()
+    void RenderHealth(int hp)
     {
+        _Health = hp;
         if (Body != null && anim != null)
         {
             anim.SetFloat("HP", Health);
 
             if (Health < -0.1)
             {
-                Destroy(transform);
-            }
-
-            if (Health < 0.5)
+                //Destroy(transform.gameObject);
+                Body.Faint();
+            } else if (Health < 0.5)
             {
-                Body.SetFly(false);
+                Body.Drop();
+                Body.SetFloat(true);
             }
             else
             {
                 Body.SetFly(true);
+                Body.SetFloat(false);
             }
         }
         else
         {
             CSLogger.L("Cannot find BalloonFighterBody or Animator");
         }
+    }
+
+    public bool DamageTrigger = false;
+
+    void Start()
+    {
+        RenderHealth(_Health);
     }
 
     void Update()
@@ -86,5 +91,29 @@ public class PlayerMetadata : MonoBehaviour
             Damage();
             DamageTrigger = false;
         }
+
+        if (Body.isIdle) {
+            if (Health < 0.5f) {
+                
+                //Counter for idle time
+                currBallonRecoveryTime += Time.deltaTime;
+                
+                //If fulfilled add a balloon
+                if (currBallonRecoveryTime > OneBalloonRecoveryTime) {
+                    RestoreBalloon();
+                    currBallonRecoveryTime = 0;
+                }
+
+                
+            } else {
+                currBallonRecoveryTime = 0;
+            }
+        } else {
+            currBallonRecoveryTime = 0;
+        }
+
+        //Show on animation
+        anim.SetFloat("PumpProgress", (currBallonRecoveryTime / OneBalloonRecoveryTime) * 100);
+        
     }
 }

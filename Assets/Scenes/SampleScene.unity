@@ -655,6 +655,10 @@ MonoBehaviour:
   SpeedBuff: 1
   anim: {fileID: 1461249019}
   Body: {fileID: 1461249015}
+  BalloonPop: {fileID: 8300000, guid: 09da4d38af3080b4ba405cf0e9fa1b88, type: 3}
+  BalloonRecover: {fileID: 8300000, guid: c78d8b03c18a2e848a38e3abd8a49a96, type: 3}
+  OneBalloonRecoveryTime: 15
+  DamageTrigger: 0
 --- !u!95 &1461249019 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4333710321768812615, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
@@ -670,6 +674,18 @@ PrefabInstance:
     - target: {fileID: 4333710321768812608, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4333710321768812608, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
+      propertyPath: floatVelocity
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4333710321768812608, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
+      propertyPath: floatClampLerp
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4333710321768812608, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
+      propertyPath: faintImpulseJump
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 4333710321768812609, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
       propertyPath: m_Actions
