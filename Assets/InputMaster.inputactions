@@ -180,7 +180,7 @@
                     "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
+                    "groups": "Keyboard;Keyboard1",
                     "action": "Start",
                     "isComposite": false,
                     "isPartOfComposite": false

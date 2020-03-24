@@ -773,6 +773,11 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 4333710321768812615, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
   m_PrefabInstance: {fileID: 4333710321289620791}
   m_PrefabAsset: {fileID: 0}
+--- !u!50 &1461249021 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 4333710321768812611, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
+  m_PrefabInstance: {fileID: 4333710321289620791}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1461249022 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4333710321768812613, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
@@ -794,7 +799,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1637046279
 Transform:
   m_ObjectHideFlags: 0
@@ -852,7 +857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2019636271
 Transform:
   m_ObjectHideFlags: 0
@@ -920,6 +925,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 806424397974484769, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 1461249015}
     - target: {fileID: 4333710321768812608, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -940,6 +949,18 @@ PrefabInstance:
       propertyPath: jumpAudioClip
       value: 
       objectReference: {fileID: 8300000, guid: e56aa4e7115b143418ec30871b764f32, type: 3}
+    - target: {fileID: 4333710321768812608, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 1461249021}
+    - target: {fileID: 4333710321768812608, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1461249019}
+    - target: {fileID: 4333710321768812608, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
+      propertyPath: autoFlapPeriod
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4333710321768812609, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
       propertyPath: m_ActionEvents.Array.size
       value: 3
