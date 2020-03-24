@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4333710321768812611}
   - component: {fileID: 4333710321768812610}
   - component: {fileID: 4333710321768812609}
+  - component: {fileID: 806424397974484769}
   - component: {fileID: 4333710321768812608}
   m_Layer: 0
   m_Name: Player
@@ -165,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 007e21a387379d242b6e400d99b54bec, type: 3}
+  m_Actions: {fileID: 0}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -180,8 +181,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4333710321768812608}
-        m_TargetAssemblyTypeName: BalloonFighterBody, Assembly-CSharp
+      - m_Target: {fileID: 806424397974484769}
+        m_TargetAssemblyTypeName: BalloonFighterPlayerBrain, Assembly-CSharp
         m_MethodName: MoveHorizontal
         m_Mode: 0
         m_Arguments:
@@ -196,8 +197,8 @@ MonoBehaviour:
     m_ActionName: BalloonFighter/Move[/Keyboard/leftArrow,/Keyboard/rightArrow,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4333710321768812608}
-        m_TargetAssemblyTypeName: BalloonFighterBody, Assembly-CSharp
+      - m_Target: {fileID: 806424397974484769}
+        m_TargetAssemblyTypeName: BalloonFighterPlayerBrain, Assembly-CSharp
         m_MethodName: Jump
         m_Mode: 0
         m_Arguments:
@@ -215,6 +216,19 @@ MonoBehaviour:
   m_DefaultActionMap: BalloonFighter
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &806424397974484769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4333710321768812632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e388715acce90945bc547d5b50c992f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  body: {fileID: 4333710321768812608}
 --- !u!114 &4333710321768812608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,10 +241,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fc3db2eadb691849a5684ad3f51d622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 4333710321768812611}
-  anim: {fileID: 4333710321768812615}
-  flapImpulse: 120
+  rb: {fileID: 0}
+  anim: {fileID: 0}
   jumpImpulse: 250
+  jumpToAutoFlapDelay: 0.5
+  flapImpulse: 140
+  autoFlapPeriod: 0.21
+  upwardFlapBias: 1.25
   groundMovementSpeed: 4
   groundCastLength: 0.5
   groundMask:
