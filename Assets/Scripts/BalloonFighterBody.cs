@@ -38,6 +38,7 @@ public class BalloonFighterBody : MonoBehaviour
 	public float floatClampLerp = 0.1f;
 	public bool hasFainted = false;
 	public bool isIdle = false;
+	public AudioClip jumpAudioClip;
 	//-----------------------------------
 	
 	public bool IsGrounded {
@@ -158,6 +159,9 @@ public class BalloonFighterBody : MonoBehaviour
 
 			if(isJumping) {
 				rb.AddForce(Vector2.up * jumpImpulse);
+
+				//Some more George invasion.
+				AudioSource.PlayClipAtPoint(jumpAudioClip, transform.position);
 			}
 			else {
 				//rb.velocity = dir * groundMovementSpeed;
@@ -174,6 +178,9 @@ public class BalloonFighterBody : MonoBehaviour
 			rb.AddForce(dir * flapImpulse);
 
 			anim.SetTrigger("Flap");
+
+			//Some more George invasion.
+			AudioSource.PlayClipAtPoint(jumpAudioClip, transform.position);
 		}
 	
 		anim.SetFloat("Movement", Mathf.Abs(moveAmount));
