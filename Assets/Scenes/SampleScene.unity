@@ -911,7 +911,7 @@ MonoBehaviour:
       m_Calls: []
   DetectionMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 2048
   ColliderEnabled: 1
 --- !u!1001 &4333710321289620791
 PrefabInstance:
