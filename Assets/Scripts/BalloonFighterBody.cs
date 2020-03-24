@@ -44,6 +44,16 @@ public class BalloonFighterBody : MonoBehaviour
 	private float moveAmount;
 	private bool isJumping;
 	private float timeOfNextAutoflap = 0f;
+
+	//George invasion variables.........
+	private bool canFly = true;
+	public bool isFloating = false;
+	public float floatVelocity = 2f;
+	public float floatClampLerp = 0.1f;
+	public bool hasFainted = false;
+	public bool isIdle = false;
+	public AudioClip jumpAudioClip;
+	//-----------------------------------
 	
 	public bool IsGrounded {
 		get {
@@ -85,6 +95,28 @@ public class BalloonFighterBody : MonoBehaviour
 			timeOfNextAutoflap = Time.time;
 		}
 	}
+
+	//George invation code...
+	public float faintImpulseJump = 100f;
+
+			timeOfNextAutoflap = Time.time;
+		}
+	public void SetFloat(bool isFloating) {
+		this.isFloating = isFloating;
+	}
+
+	public void Drop() {
+		rb.velocity = Vector3.zero;
+		SetFly(false);
+	}
+
+	public void Faint() {
+		SetFloat(false);
+		Drop();
+		rb.AddForce(Vector2.up * faintImpulseJump);
+		hasFainted = true;
+	}
+	//------------------------
 
 	private void Awake() {
 		Assert.IsNotNull(rb);
@@ -154,12 +186,18 @@ public class BalloonFighterBody : MonoBehaviour
 			if(IsGrounded) {
 				rb.AddForce(Vector2.up * jumpImpulse);
 				timeOfNextAutoflap = Time.time + jumpToAutoFlapDelay;
+
+				//Some more George invasion.
+				AudioSource.PlayClipAtPoint(jumpAudioClip, transform.position);
 			}
 			else {
 				Vector2 dir = new Vector2(
 					moveAmount, upwardFlapBias).normalized;
 				rb.AddForce(dir * flapImpulse);
 				timeOfNextAutoflap = Time.time + autoFlapPeriod;
+
+				//Some more George invasion.
+				AudioSource.PlayClipAtPoint(jumpAudioClip, transform.position);
 
 				anim.SetTrigger("Flap");
 			}
