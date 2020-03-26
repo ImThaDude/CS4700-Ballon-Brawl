@@ -800,13 +800,21 @@ PrefabInstance:
       propertyPath: m_NeverAutoSwitchControlSchemes
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4333710321768812610, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 0.46875
+      objectReference: {fileID: 0}
+    - target: {fileID: 4333710321768812610, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 0.875
+      objectReference: {fileID: 0}
     - target: {fileID: 4333710321768812613, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.7
+      value: -0.35
       objectReference: {fileID: 0}
     - target: {fileID: 4333710321768812613, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.14
       objectReference: {fileID: 0}
     - target: {fileID: 4333710321768812613, guid: ed6fdd73456f0f34cb25585794cef75b, type: 3}
       propertyPath: m_LocalPosition.z

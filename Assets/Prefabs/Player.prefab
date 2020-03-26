@@ -245,8 +245,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fc3db2eadb691849a5684ad3f51d622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  anim: {fileID: 0}
+  rb: {fileID: 4333710321768812611}
+  anim: {fileID: 4333710321768812615}
   jumpImpulse: 250
   jumpToAutoFlapDelay: 0.5
   flapImpulse: 140
