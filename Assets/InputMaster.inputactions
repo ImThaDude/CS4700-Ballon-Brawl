@@ -98,7 +98,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "1D Axis",
+                    "name": "D-Pad",
                     "id": "2fcacce6-ddf2-489e-a3a2-82899d212ed7",
                     "path": "1DAxis",
                     "interactions": "",
@@ -126,6 +126,39 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "ijklKeys",
+                    "id": "0c6567f2-d418-49b0-a56e-c5e111b0787e",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "da8bf7f3-4706-403f-aa10-a1a308f30dfb",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard3",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "34249a2b-d5fb-4c0a-b3c8-e7240fef0dc3",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard3",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -170,6 +203,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e908408c-dde1-414c-8fa9-48d9385a3d54",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard3",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -225,6 +269,17 @@
         {
             "name": "Keyboard2",
             "bindingGroup": "Keyboard2",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Keyboard3",
+            "bindingGroup": "Keyboard3",
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
