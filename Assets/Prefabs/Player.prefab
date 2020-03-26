@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: 0}
+  m_Actions: {fileID: -944628639613478452, guid: 007e21a387379d242b6e400d99b54bec, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -211,6 +211,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 7e815f52-245d-4684-937f-9d6321a7a168
     m_ActionName: BalloonFighter/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 399d8486-a6a5-418c-97c6-41d3256d3d1a
+    m_ActionName: BalloonFighter/Start[/Keyboard/enter]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: BalloonFighter
@@ -253,3 +257,10 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
+  isFloating: 0
+  floatVelocity: 2
+  floatClampLerp: 0.1
+  hasFainted: 0
+  isIdle: 0
+  jumpAudioClip: {fileID: 0}
+  faintImpulseJump: 100
