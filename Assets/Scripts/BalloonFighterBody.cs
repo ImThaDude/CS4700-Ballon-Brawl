@@ -148,7 +148,7 @@ public class BalloonFighterBody : MonoBehaviour
         if (isFloating)
         {
             Vector2 v = rb.velocity;
-            v.y = Mathf.Lerp(v.y, -floatVelocity, floatClampLerp);
+            v = Vector3.Lerp(v, Vector2.down * floatVelocity, floatClampLerp);
             rb.velocity = v;
         }
 

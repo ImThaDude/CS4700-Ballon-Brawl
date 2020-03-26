@@ -30,6 +30,8 @@ public class PlayerMetadata : MonoBehaviour
     public float OneBalloonRecoveryTime = 15f;
     float currBallonRecoveryTime = 0;
 
+    public GameObject[] HitBoxes;
+
     public void Damage()
     {
         if (BalloonPop != null) {
@@ -60,6 +62,11 @@ public class PlayerMetadata : MonoBehaviour
             {
                 //Destroy(transform.gameObject);
                 Body.Faint();
+
+                foreach (var box in HitBoxes) {
+                    box.SetActive(false);
+                }
+
             } else if (Health < 0.5)
             {
                 Body.Drop();
@@ -79,6 +86,8 @@ public class PlayerMetadata : MonoBehaviour
 
     public bool DamageTrigger = false;
 
+    public float faintTimer = 5f;
+
     void Start()
     {
         RenderHealth(_Health);
@@ -93,7 +102,7 @@ public class PlayerMetadata : MonoBehaviour
         }
 
         if (Body.isIdle) {
-            if (Health < 0.5f) {
+            if (Health < 0.5f && Health > -0.5f) {
                 
                 //Counter for idle time
                 currBallonRecoveryTime += Time.deltaTime;
@@ -110,6 +119,13 @@ public class PlayerMetadata : MonoBehaviour
             }
         } else {
             currBallonRecoveryTime = 0;
+        }
+
+        if (Health < -0.5f) {
+            faintTimer -= Time.deltaTime;
+            if (faintTimer < 0) {
+                Destroy(gameObject);
+            }
         }
 
         //Show on animation
