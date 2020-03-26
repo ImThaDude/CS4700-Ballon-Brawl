@@ -14,7 +14,7 @@ public class ForceAssignKeyboard : MonoBehaviour
 		PlayerInput input = GetComponent<PlayerInput>();
 
 		if(input.defaultControlScheme.Contains("Keyboard")) {
-			Debug.Log("Using keyboard hack. Should be removed spawning players with code.");
+			Debug.Log(gameObject.name + ": Using keyboard hack. Should be removed spawning players with code.");
 			input.SwitchCurrentControlScheme( input.defaultControlScheme, Keyboard.current );
 		}
 	}
