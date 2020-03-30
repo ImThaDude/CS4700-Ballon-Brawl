@@ -577,6 +577,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6668972421222122546, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6668972421222122546, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6668972421222122546, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6668972421222122549, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
       propertyPath: m_DefaultControlScheme
       value: Keyboard2
@@ -1205,6 +1217,10 @@ PrefabInstance:
     - target: {fileID: 6668972421222122540, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
       propertyPath: m_Name
       value: Player (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6668972421222122540, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6668972421222122545, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
       propertyPath: m_LocalPosition.x
