@@ -24,7 +24,7 @@ public class BalloonFighterPlayerBrain : MonoBehaviour
 	/// </summary>
 	/// <param name="context"></param>
 	public void MoveHorizontal(InputAction.CallbackContext context) {
-		body.MoveHorizontal(context.ReadValue<float>());
+		body.SetHorzontalMovement(context.ReadValue<float>());
 	}
 
 	/// <summary>

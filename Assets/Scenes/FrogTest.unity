@@ -942,13 +942,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b869e957827cc44ca7690e754d21c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Health: 2
+  _health: 2
   anim: {fileID: 8467519237872382602}
-  Body: {fileID: 8467519237872382603}
-  BalloonPop: {fileID: 0}
-  BalloonRecover: {fileID: 0}
-  OneBalloonRecoveryTime: 15
-  DamageTrigger: 0
+  body: {fileID: 8467519237872382603}
+  balloonPop: {fileID: 0}
+  balloonRecover: {fileID: 0}
+  oneBalloonRecoveryTime: 15
+  damageTrigger: 0
 --- !u!95 &8467519237872382602 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8467519238401904631, guid: bd78eb337531f934a97a6305f4144fd5, type: 3}

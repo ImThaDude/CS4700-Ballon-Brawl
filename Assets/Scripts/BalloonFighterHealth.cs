@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class BalloonFighterHealth : MonoBehaviour
 {
@@ -26,19 +27,21 @@ public class BalloonFighterHealth : MonoBehaviour
 
     public Animator anim;
 
-    public BalloonFighterBody Body;
+    public BalloonFighterBody body;
 
-    public AudioClip BalloonPop;
-    public AudioClip BalloonRecover;
+    public AudioClip balloonPop;
+    public AudioClip balloonRecover;
 
-    public float OneBalloonRecoveryTime = 15f;
+    public float oneBalloonRecoveryTime = 15f;
     float currBallonRecoveryTime = 0;
-    public bool DamageTrigger = false;
+
+	[Header("Debugging")]
+    public bool damageTrigger = false;
 
     public void Damage()
     {
-        if (BalloonPop != null) {
-            AudioSource.PlayClipAtPoint(BalloonPop, transform.position);
+        if (balloonPop != null) {
+            AudioSource.PlayClipAtPoint(balloonPop, transform.position);
         } else {
             CSLogger.L("BalloonPop clip as not been assigned.");
         }
@@ -46,8 +49,8 @@ public class BalloonFighterHealth : MonoBehaviour
     }
 
     public void RestoreBalloon() {
-        if (BalloonRecover != null) {
-            AudioSource.PlayClipAtPoint(BalloonRecover, transform.position);
+        if (balloonRecover != null) {
+            AudioSource.PlayClipAtPoint(balloonRecover, transform.position);
         } else {
             CSLogger.L("BalloonRecover clip as not been assigned.");
         }
@@ -56,27 +59,32 @@ public class BalloonFighterHealth : MonoBehaviour
 
 	private void OnHealthChanged() 
     {
-        if (Body != null && anim != null)
+        if (body != null && anim != null)
         {
             anim.SetFloat("HP", Health);
 
             if (Health < 0)
             {
                 //Destroy(transform.gameObject);
-                Body.Faint();
+                body.Faint();
             }
 			else if (Health == 0)
             {
-				Body.DisableFlight();
-                Body.BeginParachuting();
+				body.DisableFlight();
+                body.BeginParachuting();
             }
             else
             {
-                Body.EnableFlight();
+                body.EnableFlight();
             }
         }
     }
 
+
+	private void Awake() {
+		Assert.IsNotNull(body);
+		Assert.IsNotNull(anim);
+	}
 
     private void Start()
     {
@@ -85,20 +93,20 @@ public class BalloonFighterHealth : MonoBehaviour
 
     private void Update()
     {
-        if (DamageTrigger)
+        if (damageTrigger)
         {
             Damage();
-            DamageTrigger = false;
+            damageTrigger = false;
         }
 
-        if (Body.CurrentState == BalloonFighterBody.State.Idle && Health == 0) {
+		// Control the balloon refilling while idle
+        if (body.CurrentState == BalloonFighterBody.State.Idle && Health == 0) {
                 
 			//Counter for idle time
 			currBallonRecoveryTime += Time.deltaTime;
-			Debug.Log(currBallonRecoveryTime);
 			
 			//If fulfilled add a balloon
-			if (currBallonRecoveryTime > OneBalloonRecoveryTime) {
+			if (currBallonRecoveryTime > oneBalloonRecoveryTime) {
 				RestoreBalloon();
 				currBallonRecoveryTime = 0;
 			}
@@ -108,7 +116,7 @@ public class BalloonFighterHealth : MonoBehaviour
         }
 
         //Show on animation
-        anim.SetFloat("PumpProgress", (currBallonRecoveryTime / OneBalloonRecoveryTime) * 100);
+        anim.SetFloat("PumpProgress", (currBallonRecoveryTime / oneBalloonRecoveryTime) * 100);
         
     }
 }

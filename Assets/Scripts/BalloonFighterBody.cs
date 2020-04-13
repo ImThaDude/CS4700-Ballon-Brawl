@@ -1,9 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.IO.IsolatedStorage;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.InputSystem;
 
 /// <summary>
 /// This handles the mechanics for the balloon fighter's movement.
@@ -14,7 +14,8 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class BalloonFighterBody : MonoBehaviour
 {
-    public Rigidbody2D rb;
+	#region Config
+	public Rigidbody2D rb;
     public Animator anim;
     public AudioClip jumpAudioClip;
 
@@ -43,7 +44,6 @@ public class BalloonFighterBody : MonoBehaviour
 	[Header("Parachuting")]
     public float parachuteVelocity = 2f;
     public float parachuteClampLerp = 0.1f;
-    //public bool isIdle = false;
 
 	// TODO These should get removed and we should make a death object
     public bool hasFainted = false;
@@ -55,22 +55,24 @@ public class BalloonFighterBody : MonoBehaviour
     [Space(10)]
     public float groundCastLength = 0.5f;
     public LayerMask groundMask;
+	#endregion
 
+	#region Input tracking
 	/// <summary>
 	/// Used to track how much the player wants to move left/right.
 	/// </summary>
-    private float moveAmount;
+	private float moveAmount = 0f;
 	/// <summary>
 	/// True as long as our intent is to go up.
 	/// </summary>
-    private bool isJumpHeld;
+    private bool isJumpHeld = false;
 	/// <summary>
 	/// Tracks the next time we would do an automatic flap, in any.
 	/// Note that a time of 0 means that the next flap is NOT an
 	/// autoflap; it's a flap triggered by a recent button press.
 	/// </summary>
     private float timeOfNextAutoflap = 0f;
-    [SerializeField] private bool canFly = true;
+	#endregion
 
 	#region State tracking
 	public enum State {
@@ -116,6 +118,13 @@ public class BalloonFighterBody : MonoBehaviour
 		get; private set;
 	}
 
+	private static readonly State[] StatesWhichCanWalk = new State[] {
+		State.Idle, State.Walking, State.Parachuting
+	};
+	private static readonly State[] StatesWhichCanJump = new State[] {
+		State.Idle, State.Walking, State.Flying
+	};
+
 	/// <summary>
 	/// This is largely used by Update to figure out what state
 	/// we're currently in. It'll make its best guess as to what
@@ -143,7 +152,6 @@ public class BalloonFighterBody : MonoBehaviour
 			}
 		}
 	}
-	#endregion
 
     public bool IsGrounded
     {
@@ -158,6 +166,8 @@ public class BalloonFighterBody : MonoBehaviour
         }
     }
 
+    private bool canFly = true;
+	#endregion
 
 	#region Inputs
 	/// <summary>
@@ -169,7 +179,7 @@ public class BalloonFighterBody : MonoBehaviour
 	/// <param name="direction">
 	/// -1 is fastest to the left, and 1 is fastest to the right.
 	/// </param>
-	public void MoveHorizontal(float direction)
+	public void SetHorzontalMovement(float direction)
     {
         moveAmount = direction;
     }
@@ -194,8 +204,7 @@ public class BalloonFighterBody : MonoBehaviour
     }
 	#endregion
 
-	//George invation code...
-
+	#region Body state controls
 	public void EnableFlight(bool canFly = true)
     {
 		Debug.Log("Set fly " + canFly);
@@ -224,6 +233,7 @@ public class BalloonFighterBody : MonoBehaviour
 		}
     }
 
+	[Obsolete("Death should create a brand new object")]
     public void Faint()
     {
 		Debug.Log("Faint");
@@ -232,9 +242,10 @@ public class BalloonFighterBody : MonoBehaviour
         rb.AddForce(Vector2.up * faintImpulseJump);
         hasFainted = true;
     }
-    //------------------------
+	#endregion
 
-    private void Awake()
+	#region Unity events
+	private void Awake()
     {
         Assert.IsNotNull(rb);
         Assert.IsNotNull(anim);
@@ -247,14 +258,18 @@ public class BalloonFighterBody : MonoBehaviour
 		//State oldState = CurrentState;
 		CurrentState = DeduceCurrentState();
 
-        //More george invasion of the code
-        if (CurrentState == State.Parachuting)
+		bool canWalk = StatesWhichCanWalk.Contains(CurrentState);
+		bool canJump = StatesWhichCanJump.Contains(CurrentState);
+		bool requestingJump = isJumpHeld && Time.time >= timeOfNextAutoflap;
+
+		if (CurrentState == State.Parachuting)
         {
             Vector2 v = rb.velocity;
             v.y = Mathf.Lerp(v.y, -parachuteVelocity, parachuteClampLerp);
             rb.velocity = v;
         }
-		else if(isJumpHeld && Time.time >= timeOfNextAutoflap)
+
+		if(canJump && requestingJump)
         {
 
             if (IsGrounded)
@@ -262,11 +277,9 @@ public class BalloonFighterBody : MonoBehaviour
                 rb.AddForce(Vector2.up * jumpImpulse);
                 timeOfNextAutoflap = Time.time + jumpToAutoFlapDelay;
 
-                //Some more George invasion.
                 AudioSource.PlayClipAtPoint(jumpAudioClip, transform.position);
             }
-            //canFly is George invasion variable
-            else if (canFly)
+            else if(canFly)
             {
 
                 Vector2 dir = new Vector2(
@@ -289,7 +302,7 @@ public class BalloonFighterBody : MonoBehaviour
                 anim.SetTrigger("Flap");
             }
         }
-        else if (IsGrounded)
+        else if (canWalk)
         {
             rb.velocity = new Vector2(
                 moveAmount * groundMovementSpeed,
@@ -302,4 +315,5 @@ public class BalloonFighterBody : MonoBehaviour
         anim.SetFloat("Dir", moveAmount);
 
     }
+	#endregion
 }
