@@ -16,21 +16,16 @@ public class BalloonFighterHealth : MonoBehaviour
 				OnHealthChanged();
 			}
         }
-        get
-        {
-            return _health;
-        }
+
+        get { return _health; }
     }
 
-    //Experimental
-    //public float SpeedBuff = 1;
-
     public Animator anim;
-
     public BalloonFighterBody body;
+	public Logger logger;
 
-    public AudioClip balloonPop;
-    public AudioClip balloonRecover;
+    public AudioClip balloonPopClip;
+    public AudioClip balloonRecoverClip;
 
     public float oneBalloonRecoveryTime = 15f;
     float currBallonRecoveryTime = 0;
@@ -40,20 +35,17 @@ public class BalloonFighterHealth : MonoBehaviour
 
     public void Damage()
     {
-        if (balloonPop != null) {
-            AudioSource.PlayClipAtPoint(balloonPop, transform.position);
-        } else {
-            CSLogger.L("BalloonPop clip as not been assigned.");
+        if (balloonPopClip != null) {
+            AudioSource.PlayClipAtPoint(balloonPopClip, transform.position);
         }
         Health--;
     }
 
     public void RestoreBalloon() {
-        if (balloonRecover != null) {
-            AudioSource.PlayClipAtPoint(balloonRecover, transform.position);
-        } else {
-            CSLogger.L("BalloonRecover clip as not been assigned.");
-        }
+		if(balloonRecoverClip != null) {
+			AudioSource.PlayClipAtPoint(balloonRecoverClip, transform.position);
+		}
+
         Health++;
     }
 
@@ -82,8 +74,19 @@ public class BalloonFighterHealth : MonoBehaviour
 
 
 	private void Awake() {
+		if(logger == null) {
+			logger = Logger.DefaultLogger;
+		}
+
 		Assert.IsNotNull(body);
 		Assert.IsNotNull(anim);
+
+		if(balloonPopClip == null) {
+			logger.Warn("No pop clip given", this);
+		}
+		if(balloonRecoverClip == null) {
+			logger.Warn("No recover clip given", this);
+		}
 	}
 
     private void Start()

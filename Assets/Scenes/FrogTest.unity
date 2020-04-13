@@ -945,8 +945,9 @@ MonoBehaviour:
   _health: 2
   anim: {fileID: 8467519237872382602}
   body: {fileID: 8467519237872382603}
-  balloonPop: {fileID: 0}
-  balloonRecover: {fileID: 0}
+  logger: {fileID: 0}
+  balloonPopClip: {fileID: 8300000, guid: 09da4d38af3080b4ba405cf0e9fa1b88, type: 3}
+  balloonRecoverClip: {fileID: 8300000, guid: c78d8b03c18a2e848a38e3abd8a49a96, type: 3}
   oneBalloonRecoveryTime: 15
   damageTrigger: 0
 --- !u!95 &8467519237872382602 stripped
