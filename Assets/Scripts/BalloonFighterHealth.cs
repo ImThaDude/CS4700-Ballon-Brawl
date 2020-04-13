@@ -2,23 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMetadata : MonoBehaviour
+public class BalloonFighterHealth : MonoBehaviour
 {
 
-    public int _Health = 2;
+    [SerializeField] private int _health = 2;
     public int Health
     {
         set
         {
-            RenderHealth(value);
+			if(_health != value) {
+				_health = value;
+				OnHealthChanged();
+			}
         }
         get
         {
-            return _Health;
+            return _health;
         }
     }
+
     //Experimental
-    public float SpeedBuff = 1;
+    //public float SpeedBuff = 1;
 
     public Animator anim;
 
@@ -29,6 +33,7 @@ public class PlayerMetadata : MonoBehaviour
 
     public float OneBalloonRecoveryTime = 15f;
     float currBallonRecoveryTime = 0;
+    public bool DamageTrigger = false;
 
     public void Damage()
     {
@@ -49,42 +54,36 @@ public class PlayerMetadata : MonoBehaviour
         Health++;
     }
 
-    void RenderHealth(int hp)
+	private void OnHealthChanged() 
     {
-        _Health = hp;
         if (Body != null && anim != null)
         {
             anim.SetFloat("HP", Health);
 
-            if (Health < -0.1)
+            if (Health < 0)
             {
                 //Destroy(transform.gameObject);
                 Body.Faint();
-            } else if (Health < 0.5)
+            }
+			else if (Health == 0)
             {
-                Body.Drop();
-                Body.SetFloat(true);
+				Body.DisableFlight();
+                Body.BeginParachuting();
             }
             else
             {
-                Body.SetFly(true);
-                Body.SetFloat(false);
+                Body.EnableFlight();
             }
         }
-        else
-        {
-            CSLogger.L("Cannot find BalloonFighterBody or Animator");
-        }
     }
 
-    public bool DamageTrigger = false;
 
-    void Start()
+    private void Start()
     {
-        RenderHealth(_Health);
+		OnHealthChanged();
     }
 
-    void Update()
+    private void Update()
     {
         if (DamageTrigger)
         {
@@ -92,22 +91,18 @@ public class PlayerMetadata : MonoBehaviour
             DamageTrigger = false;
         }
 
-        if (Body.isIdle) {
-            if (Health < 0.5f) {
+        if (Body.CurrentState == BalloonFighterBody.State.Idle && Health == 0) {
                 
-                //Counter for idle time
-                currBallonRecoveryTime += Time.deltaTime;
-                
-                //If fulfilled add a balloon
-                if (currBallonRecoveryTime > OneBalloonRecoveryTime) {
-                    RestoreBalloon();
-                    currBallonRecoveryTime = 0;
-                }
-
-                
-            } else {
-                currBallonRecoveryTime = 0;
-            }
+			//Counter for idle time
+			currBallonRecoveryTime += Time.deltaTime;
+			Debug.Log(currBallonRecoveryTime);
+			
+			//If fulfilled add a balloon
+			if (currBallonRecoveryTime > OneBalloonRecoveryTime) {
+				RestoreBalloon();
+				currBallonRecoveryTime = 0;
+			}
+			
         } else {
             currBallonRecoveryTime = 0;
         }

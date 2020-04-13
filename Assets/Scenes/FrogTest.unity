@@ -925,3 +925,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd78eb337531f934a97a6305f4144fd5, type: 3}
+--- !u!1 &8467519237872382600 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8467519238401904616, guid: bd78eb337531f934a97a6305f4144fd5, type: 3}
+  m_PrefabInstance: {fileID: 8467519237872382599}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8467519237872382601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8467519237872382600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b869e957827cc44ca7690e754d21c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Health: 2
+  anim: {fileID: 8467519237872382602}
+  Body: {fileID: 8467519237872382603}
+  BalloonPop: {fileID: 0}
+  BalloonRecover: {fileID: 0}
+  OneBalloonRecoveryTime: 15
+  DamageTrigger: 0
+--- !u!95 &8467519237872382602 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8467519238401904631, guid: bd78eb337531f934a97a6305f4144fd5, type: 3}
+  m_PrefabInstance: {fileID: 8467519237872382599}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8467519237872382603 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8467519238401904624, guid: bd78eb337531f934a97a6305f4144fd5, type: 3}
+  m_PrefabInstance: {fileID: 8467519237872382599}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8467519237872382600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fc3db2eadb691849a5684ad3f51d622, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
