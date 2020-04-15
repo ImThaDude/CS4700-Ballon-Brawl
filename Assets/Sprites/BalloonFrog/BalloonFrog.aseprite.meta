@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 4320971f9ee7167498bd22f34c3cecad
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: b1577cdc41d01fa4dbf68ad51122a765, type: 3}
+  pixelsPerUnit: 32
+  spriteAtlas: {instanceID: 0}
+  frameRate: 60
+  sortingLayerName: 
+  sortingOrder: 0
+  animatorCullingMode: 0
+  animatorController: {fileID: 9100000, guid: 2f6ed84391683774db6dc3dea2bd003a, type: 2}
+  errors: []

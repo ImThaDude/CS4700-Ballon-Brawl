@@ -24,7 +24,7 @@ public class BalloonFighterPlayerBrain : MonoBehaviour
 	/// </summary>
 	/// <param name="context"></param>
 	public void MoveHorizontal(InputAction.CallbackContext context) {
-		body.MoveHorizontal(context.ReadValue<float>());
+		body.SetHorzontalMovement(context.ReadValue<float>());
 	}
 
 	/// <summary>
@@ -33,10 +33,10 @@ public class BalloonFighterPlayerBrain : MonoBehaviour
 	/// <param name="context"></param>
 	public void Jump(InputAction.CallbackContext context) {
 		if(context.performed) {
-			body.SetJump(true);
+			body.SetJumpIntent(true);
 		}
 		else if(context.canceled) {
-			body.SetJump(false);
+			body.SetJumpIntent(false);
 		}
 	}
 }
