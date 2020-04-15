@@ -21,9 +21,9 @@ public class BoxHitboxCollision : MonoBehaviour
         if (ColliderEnabled && BoxHitbox.isActiveAndEnabled) {
             var cols = Physics2D.BoxCastAll(BoxHitbox.transform.position, BoxHitbox.size, 0, Vector2.zero, 0, DetectionMask);
             if (cols.Length > 0) {
-                CSLogger.L("Collision detected.");
+                Logger.DefaultLogger.Log("Collision detected.");
                 OnBoxCollisions.Invoke(cols);
-                CSLogger.L(cols[0].transform.name);
+                Logger.DefaultLogger.Log(cols[0].transform.name);
             }
         }
     }
