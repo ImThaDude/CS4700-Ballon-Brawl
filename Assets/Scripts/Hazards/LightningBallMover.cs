@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class LightningBallMover : MonoBehaviour
 {
 	// This is really, *really* shoddy. We should be using triggers
