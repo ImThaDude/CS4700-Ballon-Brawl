@@ -23,6 +23,7 @@ public class BalloonFighterHealth : MonoBehaviour
     public Animator anim;
     public BalloonFighterBody body;
 	public Logger logger;
+	public GameObject deathPrefab;
 
     public AudioClip balloonPopClip;
     public AudioClip balloonRecoverClip;
@@ -51,6 +52,10 @@ public class BalloonFighterHealth : MonoBehaviour
 
 	public void Kill() {
 		Destroy(gameObject);
+
+		if(deathPrefab != null) {
+			Instantiate(deathPrefab, transform.position, deathPrefab.transform.rotation, null);
+		}
 	}
 
 	private void OnHealthChanged() 

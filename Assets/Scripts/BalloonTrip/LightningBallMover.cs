@@ -9,8 +9,8 @@ public class LightningBallMover : MonoBehaviour
 	// This is really, *really* shoddy. We should be using triggers
 	// or whatnot to markout the zone, but for now, I'll just have
 	// to give you some floats to track the areas.
-	public Bounds playField;
-	public Vector2 initVelocity;
+	[HideInInspector] public Bounds playField;
+	//public Vector2 initVelocity;
 
 
 	private Rigidbody2D rb;
@@ -23,7 +23,7 @@ public class LightningBallMover : MonoBehaviour
 
 	private void OnEnable()
     {
-		rb.velocity = initVelocity;
+		//rb.velocity = initVelocity;
     }
 
     private void Update()
