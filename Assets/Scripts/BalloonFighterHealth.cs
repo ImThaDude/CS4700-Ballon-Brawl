@@ -49,6 +49,10 @@ public class BalloonFighterHealth : MonoBehaviour
         Health++;
     }
 
+	public void Kill() {
+		Destroy(gameObject);
+	}
+
 	private void OnHealthChanged() 
     {
         if (body != null && anim != null)
