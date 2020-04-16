@@ -155,16 +155,19 @@ public class BalloonFighterBody : MonoBehaviour
 
     public bool IsGrounded
     {
-        get
-        {
-            return Physics2D.Raycast(
-                rb.transform.position,
-                Vector2.down,
-                groundCastLength,
-                groundMask
-            );
-        }
+        get { return StandingCastHit; }
     }
+
+	public RaycastHit2D StandingCastHit {
+		get {
+			return Physics2D.Raycast(
+				rb.transform.position,
+				Vector2.down,
+				groundCastLength,
+				groundMask
+			);
+		}
+	}
 
     private bool canFly = true;
 	#endregion
@@ -307,7 +310,7 @@ public class BalloonFighterBody : MonoBehaviour
             rb.velocity = new Vector2(
                 moveAmount * groundMovementSpeed,
                 rb.velocity.y
-            );
+            ) + StandingCastHit.rigidbody.velocity;
         }
 
         anim.SetFloat("Movement", Mathf.Abs(moveAmount));
