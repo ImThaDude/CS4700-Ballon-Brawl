@@ -529,6 +529,18 @@ PrefabInstance:
       propertyPath: faintTimer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1461249016, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
+      propertyPath: Body
+      value: 
+      objectReference: {fileID: 621736858}
+    - target: {fileID: 1461249016, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
+      propertyPath: BalloonRecover
+      value: 
+      objectReference: {fileID: 8300000, guid: c78d8b03c18a2e848a38e3abd8a49a96, type: 3}
+    - target: {fileID: 1461249016, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
+      propertyPath: BalloonPop
+      value: 
+      objectReference: {fileID: 8300000, guid: 09da4d38af3080b4ba405cf0e9fa1b88, type: 3}
     - target: {fileID: 6668972421222122540, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
       propertyPath: m_Name
       value: Player (2)
@@ -620,6 +632,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad6641b3bb36fd343a605b4f00d52c99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &621736858 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6668972421222122548, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
+  m_PrefabInstance: {fileID: 621736845}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621736846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fc3db2eadb691849a5684ad3f51d622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &660967970
@@ -1477,6 +1500,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad6641b3bb36fd343a605b4f00d52c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1679186382 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6668972421222122548, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
+  m_PrefabInstance: {fileID: 6668972421699238211}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679186378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fc3db2eadb691849a5684ad3f51d622, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1832276986 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1637046278, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
@@ -1773,6 +1807,18 @@ PrefabInstance:
       propertyPath: faintTimer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1461249016, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
+      propertyPath: Body
+      value: 
+      objectReference: {fileID: 2140092961}
+    - target: {fileID: 1461249016, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
+      propertyPath: BalloonRecover
+      value: 
+      objectReference: {fileID: 8300000, guid: c78d8b03c18a2e848a38e3abd8a49a96, type: 3}
+    - target: {fileID: 1461249016, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
+      propertyPath: BalloonPop
+      value: 
+      objectReference: {fileID: 8300000, guid: 09da4d38af3080b4ba405cf0e9fa1b88, type: 3}
     - target: {fileID: 6668972421222122540, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
       propertyPath: m_Name
       value: Player (3)
@@ -1854,6 +1900,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad6641b3bb36fd343a605b4f00d52c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2140092961 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6668972421222122548, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
+  m_PrefabInstance: {fileID: 2140092948}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2140092949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fc3db2eadb691849a5684ad3f51d622, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6668972421699238211
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1885,6 +1942,18 @@ PrefabInstance:
       propertyPath: faintTimer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1461249016, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
+      propertyPath: Body
+      value: 
+      objectReference: {fileID: 1679186382}
+    - target: {fileID: 1461249016, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
+      propertyPath: BalloonPop
+      value: 
+      objectReference: {fileID: 8300000, guid: 09da4d38af3080b4ba405cf0e9fa1b88, type: 3}
+    - target: {fileID: 1461249016, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
+      propertyPath: BalloonRecover
+      value: 
+      objectReference: {fileID: 8300000, guid: c78d8b03c18a2e848a38e3abd8a49a96, type: 3}
     - target: {fileID: 6668972421222122540, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
       propertyPath: m_Name
       value: Player
