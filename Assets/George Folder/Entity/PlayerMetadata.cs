@@ -32,6 +32,8 @@ public class PlayerMetadata : MonoBehaviour
 
     public GameObject[] HitBoxes;
 
+    public SendAnimationMVP animMVP;
+
     public void Damage()
     {
         if (BalloonPop != null) {
@@ -56,7 +58,8 @@ public class PlayerMetadata : MonoBehaviour
         _Health = hp;
         if (Body != null && anim != null)
         {
-            anim.SetFloat("HP", Health);
+            //anim.SetFloat("HP", Health);
+            animMVP.UpdateHP(Health);
 
             if (Health < -0.1)
             {
@@ -95,6 +98,8 @@ public class PlayerMetadata : MonoBehaviour
 
     void Update()
     {
+        RenderHealth(Health);
+
         if (DamageTrigger)
         {
             Damage();
@@ -129,7 +134,8 @@ public class PlayerMetadata : MonoBehaviour
         }
 
         //Show on animation
-        anim.SetFloat("PumpProgress", (currBallonRecoveryTime / OneBalloonRecoveryTime) * 100);
+        //anim.SetFloat("PumpProgress", (currBallonRecoveryTime / OneBalloonRecoveryTime) * 100);
+        animMVP.UpdatePumpProgress((currBallonRecoveryTime / OneBalloonRecoveryTime) * 100);
         
     }
 }
