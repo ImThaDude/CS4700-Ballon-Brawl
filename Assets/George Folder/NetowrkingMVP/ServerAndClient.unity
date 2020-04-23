@@ -364,7 +364,7 @@ MonoBehaviour:
   userId: TestUser
   StopClient: 0
   StopThread: 0
-  StartClient: 0
+  StartClient: 1
   toBeSentPosition: {x: 0, y: 0, z: 0}
   ClientConnected: 0
   playerHandler: {fileID: 1951558840}

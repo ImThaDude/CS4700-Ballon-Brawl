@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEditor;
 
 public class BoxHitboxCollision : MonoBehaviour
 {
@@ -38,6 +39,10 @@ public class BoxHitboxCollision : MonoBehaviour
             }
         }
         isHit = false;
+    }
+
+    void OnDrawGizmos() {
+        Gizmos.DrawCube(BoxHitbox.transform.position, BoxHitbox.size);
     }
 
 }
