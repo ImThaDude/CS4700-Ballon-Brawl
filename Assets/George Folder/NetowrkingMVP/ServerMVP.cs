@@ -114,7 +114,7 @@ public class ServerMVP
         cmd.Put(pos.y);
         cmd.Put(pos.z);
         peer.Send(cmd, DeliveryMethod.ReliableOrdered);
-        Debug.Log("[Server]Sent " + UserId + " position of " + pos + " to " + userIdPool[peer]);
+        //Debug.Log("[Server]Sent " + UserId + " position of " + pos + " to " + userIdPool[peer]);
     }
 
     public async void SendAnimationToAllPeers(NetPeer peerSending) {
