@@ -97,7 +97,7 @@ public class ClientMVP
         cmd.Put(pos.y);
         cmd.Put(pos.z);
         serverPeer.Send(cmd, DeliveryMethod.ReliableOrdered);
-        Debug.Log("[Client]Sending Position: " + pos);
+        //Debug.Log("[Client]Sending Position: " + pos);
     }
 
     public void SendAnimation(float HP, bool IsGrounded, float Movement, float Dir, bool Flap, float PumpProgress) {
@@ -126,7 +126,7 @@ public class ClientMVP
         if (OnReceivePlayerPositionData != null) {
             OnReceivePlayerPositionData(userId, pos);
         }
-        Debug.Log("[Client]Received Position: " + pos);
+        //Debug.Log("[Client]Received Position: " + pos);
     }
 
     public void ReceiveAnimation(NetPeer peer, NetDataReader reader) {

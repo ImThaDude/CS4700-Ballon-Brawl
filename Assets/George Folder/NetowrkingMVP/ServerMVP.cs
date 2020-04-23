@@ -230,7 +230,7 @@ public class ServerMVP
         positionPool[UserId].position.x = x;
         positionPool[UserId].position.y = y;
         positionPool[UserId].position.z = z;
-        Debug.Log("[Server]ReceivedPosition: " + x + " " + y + " " + z + " for user " + UserId);
+        //Debug.Log("[Server]ReceivedPosition: " + x + " " + y + " " + z + " for user " + UserId);
     }
 
     public class PlayerMetadata
