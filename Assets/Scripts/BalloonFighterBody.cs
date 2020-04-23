@@ -53,6 +53,8 @@ public class BalloonFighterBody : MonoBehaviour
     public bool hasFainted = false;
     public bool isIdle = false;
     public AudioClip jumpAudioClip;
+
+    public SendAnimationMVP animMVP;
     //-----------------------------------
 
     public bool IsGrounded
@@ -227,7 +229,8 @@ public class BalloonFighterBody : MonoBehaviour
                 //Some more George invasion.
                 AudioSource.PlayClipAtPoint(jumpAudioClip, transform.position);
 
-                anim.SetTrigger("Flap");
+                //anim.SetTrigger("Flap");
+                animMVP.UpdateFlap(true);
             }
         }
         else if (IsGrounded)
@@ -238,9 +241,12 @@ public class BalloonFighterBody : MonoBehaviour
             );
         }
 
-        anim.SetFloat("Movement", Mathf.Abs(moveAmount));
-        anim.SetBool("IsGrounded", IsGrounded);
-        anim.SetFloat("Dir", moveAmount);
+        //anim.SetFloat("Movement", Mathf.Abs(moveAmount));
+        animMVP.UpdateMovement(Mathf.Abs(moveAmount));
+        //anim.SetBool("IsGrounded", IsGrounded);
+        animMVP.UpdateIsGrounded(IsGrounded);
+        //anim.SetFloat("Dir", moveAmount);
+        animMVP.UpdateDir(moveAmount);
 
         ResetControlVars();
     }
