@@ -192,7 +192,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &203959414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,7 +361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ip: localhost
   port: 25565
-  userId: TestUser1
+  userId: TestUser
   StopClient: 0
   StopThread: 0
   StartClient: 1
@@ -1487,11 +1487,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6448216825099385274, guid: 5ec0ea08326cd5b4da4a29985e0158b4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.74
+      value: -6.79
       objectReference: {fileID: 0}
     - target: {fileID: 6448216825099385274, guid: 5ec0ea08326cd5b4da4a29985e0158b4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.31
+      value: 0.26
       objectReference: {fileID: 0}
     - target: {fileID: 6448216825099385274, guid: 5ec0ea08326cd5b4da4a29985e0158b4, type: 3}
       propertyPath: m_LocalPosition.z
