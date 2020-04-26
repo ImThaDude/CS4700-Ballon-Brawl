@@ -1060,7 +1060,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40ae347de5cc3f84489d85a6db16101a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  client: {fileID: 0}
   NetworkPlayerPrefab: {fileID: 4315055406300634599, guid: 5af22a349403a30418ad7beb60e3a07c, type: 3}
+  OnSelfPositionUpdate:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &852264552
 Transform:
   m_ObjectHideFlags: 0
@@ -1178,7 +1182,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40ae347de5cc3f84489d85a6db16101a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  client: {fileID: 0}
   NetworkPlayerPrefab: {fileID: 4315055406300634599, guid: 5af22a349403a30418ad7beb60e3a07c, type: 3}
+  OnSelfPositionUpdate:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1073835041
 Transform:
   m_ObjectHideFlags: 0
@@ -1333,6 +1341,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 6448216825610028233}
   client: {fileID: 313155560}
+--- !u!114 &1679186384 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6448216825099385279, guid: 5ec0ea08326cd5b4da4a29985e0158b4, type: 3}
+  m_PrefabInstance: {fileID: 6448216825610028232}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679186378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fc3db2eadb691849a5684ad3f51d622, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1726929788
 GameObject:
   m_ObjectHideFlags: 0
@@ -1398,7 +1417,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40ae347de5cc3f84489d85a6db16101a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  client: {fileID: 0}
   NetworkPlayerPrefab: {fileID: 4315055406300634599, guid: 5af22a349403a30418ad7beb60e3a07c, type: 3}
+  OnSelfPositionUpdate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1679186384}
+        m_TargetAssemblyTypeName: BalloonFighterBody, Assembly-CSharp
+        m_MethodName: SetPosition
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1951558841
 Transform:
   m_ObjectHideFlags: 0

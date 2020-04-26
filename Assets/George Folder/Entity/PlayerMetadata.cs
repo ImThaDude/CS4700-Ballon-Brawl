@@ -98,7 +98,7 @@ public class PlayerMetadata : MonoBehaviour
 
     void Update()
     {
-        RenderHealth(Health);
+        animMVP.UpdateHP(Health);
 
         if (DamageTrigger)
         {

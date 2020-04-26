@@ -129,6 +129,10 @@ public class BalloonFighterBody : MonoBehaviour
         rb.AddForce(Vector2.up * faintImpulseJump);
         hasFainted = true;
     }
+
+    public void SetPosition(Vector3 position) {
+        transform.position = position;
+    }
     //------------------------
 
     private void Awake()

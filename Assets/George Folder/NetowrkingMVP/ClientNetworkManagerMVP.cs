@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Threading;
+using System;
 
 public class ClientNetworkManagerMVP : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class ClientNetworkManagerMVP : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        //Quick patch to create a quick user.
+        userId = DateTime.Now.Ticks.ToString();
     }
 
     // Update is called once per frame
@@ -37,6 +39,7 @@ public class ClientNetworkManagerMVP : MonoBehaviour
 
             client.OnReceivePlayerPositionData += playerHandler.OnReceivePositionFromPlayer;
             client.OnReceiveAnimationPlayerUpdate += playerHandler.OnReceiveAnimation;
+            playerHandler.client = this;
 
             client.OnConnectedToServer += RequestForServerData;
 

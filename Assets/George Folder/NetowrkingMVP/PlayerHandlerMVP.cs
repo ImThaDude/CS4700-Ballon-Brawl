@@ -2,15 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Events;
 
 public class PlayerHandlerMVP : MonoBehaviour
 {
+
+    [System.Serializable]
+    public class PositionEvent : UnityEvent<Vector3> {
+    }
+
+    public ClientNetworkManagerMVP client;
 
     public Dictionary<string, PlayerClass> playerPool;
 
     public GameObject NetworkPlayerPrefab;
 
     public Queue<string> spawningPlayers;
+
+    public PositionEvent OnSelfPositionUpdate;
 
     void Start()
     {
@@ -42,7 +51,7 @@ public class PlayerHandlerMVP : MonoBehaviour
 
     public void OnReceiveFromPlayer(string userId)
     {
-        if (!playerPool.ContainsKey(userId))
+        if (!playerPool.ContainsKey(userId) && client.userId != userId)
         {
             playerPool.Add(userId, new PlayerClass());
             spawningPlayers.Enqueue(userId);
@@ -87,6 +96,11 @@ public class PlayerHandlerMVP : MonoBehaviour
         if (playerPool.ContainsKey(userId))
         {
             playerPool[userId].playerPosition.position = position;
+        }
+
+        if (userId == client.userId) {
+            //Self update
+            OnSelfPositionUpdate.Invoke(position);
         }
     }
 

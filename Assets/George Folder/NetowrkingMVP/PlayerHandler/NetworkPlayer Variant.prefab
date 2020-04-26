@@ -115,6 +115,10 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6668972421222122546, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 40642cb4a9d704f4589e8d048f794b5a, type: 2}
     - target: {fileID: 6668972421222122549, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
       propertyPath: m_DefaultControlScheme
       value: Keyboard2

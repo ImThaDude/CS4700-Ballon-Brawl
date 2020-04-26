@@ -17,8 +17,8 @@ TagManager:
   - Player
   - PlayerCollision
   - BalloonCollision
-  - 
-  - 
+  - PlatformCollision
+  - PlayerFeetCollision
   - 
   - 
   - 
