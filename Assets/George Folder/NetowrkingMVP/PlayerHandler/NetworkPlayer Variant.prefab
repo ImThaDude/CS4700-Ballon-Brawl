@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6668972421222122540, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6668972421222122545, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
       propertyPath: m_LocalPosition.x
@@ -125,6 +125,7 @@ PrefabInstance:
     - {fileID: 8613711860051515415, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
     - {fileID: 7753055822045848405, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
     - {fileID: 6668972421222122549, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
+    - {fileID: 6668972421222122551, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
 --- !u!1 &7453135306001149413 stripped
 GameObject:

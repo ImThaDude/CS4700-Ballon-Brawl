@@ -1551,10 +1551,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkPlayer
       objectReference: {fileID: 0}
-    - target: {fileID: 4315055406300634599, guid: 5af22a349403a30418ad7beb60e3a07c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4315055406300634618, guid: 5af22a349403a30418ad7beb60e3a07c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.53
