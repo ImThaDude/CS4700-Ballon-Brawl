@@ -10,7 +10,7 @@ public class ClientNetworkManagerMVP : MonoBehaviour
     Thread t;
 
     public string ip = "localhost";
-    public short port = 25565;
+    public short port = 27757;
     public string userId = "TestUser";
 
     // Start is called before the first frame update

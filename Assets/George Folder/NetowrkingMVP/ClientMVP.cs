@@ -9,7 +9,7 @@ public class ClientMVP
 {
     public string UserId = "";
     public string ip = "localhost";
-    public short port = 25565;
+    public short port = 27757;
     public bool stopRunning = false;
 
     public ClientMVP(string ip, short port, string userId) {

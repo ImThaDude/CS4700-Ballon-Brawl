@@ -47,6 +47,11 @@ public class PlayerHandlerMVP : MonoBehaviour
             var anim = a.Value.animation;
             UpdateReceiveAnimation(a.Key, anim.HP, anim.IsGrounded, anim.Movement, anim.Dir, anim.Flap, anim.PumpProgress);
         }
+
+        if (queuePositionChange) {
+            queuePositionChange = false;
+            OnSelfPositionUpdate.Invoke(positionChange);
+        }
     }
 
     public void OnReceiveFromPlayer(string userId)
@@ -90,6 +95,9 @@ public class PlayerHandlerMVP : MonoBehaviour
         }
     }
 
+    public bool queuePositionChange = false;
+    public Vector3 positionChange;
+
     public void OnReceivePositionFromPlayer(string userId, Vector3 position)
     {
         OnReceiveFromPlayer(userId);
@@ -100,7 +108,8 @@ public class PlayerHandlerMVP : MonoBehaviour
 
         if (userId == client.userId) {
             //Self update
-            OnSelfPositionUpdate.Invoke(position);
+            queuePositionChange = true;
+            positionChange = position;            
         }
     }
 

@@ -7,13 +7,17 @@ public class TestingServerMVP : MonoBehaviour
 {
     ServerMVP client;
     Thread t;
-    public short port = 25565;
+    public short port = 27757;
 
     // Start is called before the first frame update
     void Start()
     {
         client = new ServerMVP(port);
         t = new Thread(new ThreadStart(client.Run));
+        var gms = GameObject.FindGameObjectsWithTag("spawnLocation");
+        foreach (var l in gms) {
+            client.PushPositionIntoDatabase(l.transform.position);
+        }
         t.Start();
     }
 

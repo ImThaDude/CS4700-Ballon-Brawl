@@ -55,18 +55,21 @@ public class BalloonFighterBody : MonoBehaviour
     public AudioClip jumpAudioClip;
 
     public SendAnimationMVP animMVP;
+
+    public Transform[] GroundPositionRays;
     //-----------------------------------
 
     public bool IsGrounded
     {
         get
         {
-            return Physics2D.Raycast(
-                rb.transform.position,
-                Vector2.down,
-                groundCastLength,
-                groundMask
-            );
+            foreach (var a in GroundPositionRays)
+            {
+                if (Physics2D.Raycast(a.position, Vector2.down, groundCastLength, groundMask)) {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 
@@ -130,7 +133,8 @@ public class BalloonFighterBody : MonoBehaviour
         hasFainted = true;
     }
 
-    public void SetPosition(Vector3 position) {
+    public void SetPosition(Vector3 position)
+    {
         transform.position = position;
     }
     //------------------------

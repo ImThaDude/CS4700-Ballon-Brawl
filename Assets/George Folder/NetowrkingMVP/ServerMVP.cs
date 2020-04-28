@@ -15,16 +15,18 @@ public class ServerMVP
         positionPool = new Dictionary<string, PlayerPosition>();
         animationPool = new Dictionary<string, AnimationState>();
         metadataPool = new Dictionary<string, PlayerMetadata>();
+
+        startPositionPool = new List<Vector3>();
     }
 
     public bool stopRunning = false;
-    public short port = 25565;
+    public short port = 27757;
     public void Run()
     {
         Debug.Log("Server started!");
         EventBasedNetListener listener = new EventBasedNetListener();
         NetManager server = new NetManager(listener);
-        server.Start(25565 /* port */);
+        server.Start(port /* port */);
 
         listener.ConnectionRequestEvent += request =>
         {
@@ -181,6 +183,19 @@ public class ServerMVP
         writer.Put(1); //Send received user
         peer.Send(writer, DeliveryMethod.ReliableOrdered);
         Debug.Log("[Server]RegisteredUserToServer: " + userId);
+
+
+        //Adding user and their started position;
+        if (!positionPool.ContainsKey(userId))
+        {
+            positionPool.Add(userId, new PlayerPosition() { });
+        }
+        float x = startPositionPool[startPositionIndex].x, y = startPositionPool[startPositionIndex].y, z = startPositionPool[startPositionIndex].z;
+        positionPool[userId].position.x = x;
+        positionPool[userId].position.y = y;
+        positionPool[userId].position.z = z;
+        startPositionIndex = (startPositionIndex + 1) % startPositionPool.Count;
+        Debug.Log("[Server]Assigned initial position of: " + startPositionPool[startPositionIndex] + " to userid: " + userId);
     }
 
     public class AnimationState
@@ -250,4 +265,12 @@ public class ServerMVP
         }
         metadataPool[UserId].HP = reader.GetInt();
     }
+
+    public List<Vector3> startPositionPool;
+    public int startPositionIndex = 0;
+
+    public void PushPositionIntoDatabase(Vector3 position) {
+        startPositionPool.Add(position);
+    }
+
 }
