@@ -8,7 +8,8 @@ using System.Threading;
 
 public class ServerMVP
 {
-    public ServerMVP(short post) {
+    public ServerMVP(short post)
+    {
         this.port = port;
         peerPool = new Dictionary<string, NetPeer>();
         userIdPool = new Dictionary<NetPeer, string>();
@@ -87,80 +88,110 @@ public class ServerMVP
         Debug.Log("Server has ended...");
     }
 
-    public async void SendAllData(NetPeer peer) {
-        foreach (var userId in peerPool.Keys) {
+    public async void SendAllData(NetPeer peer)
+    {
+
+        Debug.Log("Received request for all data...");
+        //Problem with the peerPool. Might be better by userid.
+        //foreach (var userId in peerPool.Keys) {
+        Debug.Log(peerPool.Count);
+        foreach (var userId in userIdPool.Values)
+        {
+            Debug.Log("Sending position to userid: " + userId);
             SendPosition(peer, userId);
             await Task.Delay(2);
-            SendMetadata(peer, userId);
+            SendAnimation(peer, userId);
             await Task.Delay(2);
             SendMetadata(peer, userId);
             await Task.Delay(2);
         }
     }
 
-    public async void SendPositionToAllPeers(NetPeer peerSending) {
+    public async void SendPositionToAllPeers(NetPeer peerSending)
+    {
         string userId = userIdPool[peerSending];
-        foreach (var peer in userIdPool.Keys) {
-            if (peer != peerSending) {
+        foreach (var peer in userIdPool.Keys)
+        {
+            if (peer != peerSending)
+            {
                 SendPosition(peer, userId);
                 await Task.Delay(2);
             }
         }
     }
 
-    public void SendPosition(NetPeer peer, string UserId) {
-        var cmd = SendCommand(2);
-        cmd.Put(UserId);
-        var pos = positionPool[UserId].position;
-        cmd.Put(pos.x);
-        cmd.Put(pos.y);
-        cmd.Put(pos.z);
-        peer.Send(cmd, DeliveryMethod.ReliableOrdered);
-        //Debug.Log("[Server]Sent " + UserId + " position of " + pos + " to " + userIdPool[peer]);
+    public void SendPosition(NetPeer peer, string UserId)
+    {
+        if (positionPool.ContainsKey(UserId))
+        {
+            var cmd = SendCommand(2);
+            cmd.Put(UserId);
+            var pos = positionPool[UserId].position;
+            cmd.Put(pos.x);
+            cmd.Put(pos.y);
+            cmd.Put(pos.z);
+            peer.Send(cmd, DeliveryMethod.ReliableOrdered);
+            //Debug.Log("[Server]Sent " + UserId + " position of " + pos + " to " + userIdPool[peer]);
+        }
     }
 
-    public async void SendAnimationToAllPeers(NetPeer peerSending) {
+    public async void SendAnimationToAllPeers(NetPeer peerSending)
+    {
         string userId = userIdPool[peerSending];
-        foreach (var peer in userIdPool.Keys) {
-            if (peer != peerSending) {
+        foreach (var peer in userIdPool.Keys)
+        {
+            if (peer != peerSending)
+            {
                 SendAnimation(peer, userId);
                 await Task.Delay(2);
             }
         }
     }
 
-    public void SendAnimation(NetPeer peer, string UserId) {
-        var cmd = SendCommand(3);
-        cmd.Put(UserId);
-        var anim = animationPool[UserId];
-        cmd.Put(anim.HP);
-        cmd.Put(anim.IsGrounded);
-        cmd.Put(anim.Movement);
-        cmd.Put(anim.Dir);
-        cmd.Put(anim.Flap);
-        cmd.Put(anim.PumpProgress);
-        peer.Send(cmd, DeliveryMethod.ReliableOrdered);
+    public void SendAnimation(NetPeer peer, string UserId)
+    {
+        if (animationPool.ContainsKey(UserId))
+        {
+            var cmd = SendCommand(3);
+            cmd.Put(UserId);
+            var anim = animationPool[UserId];
+            cmd.Put(anim.HP);
+            cmd.Put(anim.IsGrounded);
+            cmd.Put(anim.Movement);
+            cmd.Put(anim.Dir);
+            cmd.Put(anim.Flap);
+            cmd.Put(anim.PumpProgress);
+            peer.Send(cmd, DeliveryMethod.ReliableOrdered);
+        }
     }
 
-    public async void SendMetadataToAllPeers(NetPeer peerSending) {
+    public async void SendMetadataToAllPeers(NetPeer peerSending)
+    {
         string userId = userIdPool[peerSending];
-        foreach (var peer in userIdPool.Keys) {
-            if (peer != peerSending) {
+        foreach (var peer in userIdPool.Keys)
+        {
+            if (peer != peerSending)
+            {
                 SendMetadata(peer, userId);
                 await Task.Delay(2);
             }
         }
     }
 
-    public void SendMetadata(NetPeer peer, string UserId) {
-        var cmd = SendCommand(4);
-        cmd.Put(UserId);
-        var meta = metadataPool[UserId];
-        cmd.Put(meta.HP);
-        peer.Send(cmd, DeliveryMethod.ReliableOrdered);
+    public void SendMetadata(NetPeer peer, string UserId)
+    {
+        if (metadataPool.ContainsKey(UserId))
+        {
+            var cmd = SendCommand(4);
+            cmd.Put(UserId);
+            var meta = metadataPool[UserId];
+            cmd.Put(meta.HP);
+            peer.Send(cmd, DeliveryMethod.ReliableOrdered);
+        }
     }
 
-    NetDataWriter SendCommand(int index) {
+    NetDataWriter SendCommand(int index)
+    {
         NetDataWriter writer = new NetDataWriter();
         writer.Put(index);
         return writer;
@@ -269,7 +300,8 @@ public class ServerMVP
     public List<Vector3> startPositionPool;
     public int startPositionIndex = 0;
 
-    public void PushPositionIntoDatabase(Vector3 position) {
+    public void PushPositionIntoDatabase(Vector3 position)
+    {
         startPositionPool.Add(position);
     }
 
