@@ -85,19 +85,19 @@ public class ServerMVP
             Thread.Sleep(15);
         }
         server.Stop();
-        Debug.Log("Server has ended...");
+        //Debug.Log("Server has ended...");
     }
 
     public async void SendAllData(NetPeer peer)
     {
 
-        Debug.Log("Received request for all data...");
+        //Debug.Log("Received request for all data...");
         //Problem with the peerPool. Might be better by userid.
         //foreach (var userId in peerPool.Keys) {
-        Debug.Log(peerPool.Count);
+        //Debug.Log(peerPool.Count);
         foreach (var userId in userIdPool.Values)
         {
-            Debug.Log("Sending position to userid: " + userId);
+            //Debug.Log("Sending position to userid: " + userId);
             SendPosition(peer, userId);
             await Task.Delay(2);
             SendAnimation(peer, userId);
@@ -213,7 +213,7 @@ public class ServerMVP
         NetDataWriter writer = new NetDataWriter();
         writer.Put(1); //Send received user
         peer.Send(writer, DeliveryMethod.ReliableOrdered);
-        Debug.Log("[Server]RegisteredUserToServer: " + userId);
+        //Debug.Log("[Server]RegisteredUserToServer: " + userId);
 
 
         //Adding user and their started position;
@@ -226,7 +226,7 @@ public class ServerMVP
         positionPool[userId].position.y = y;
         positionPool[userId].position.z = z;
         startPositionIndex = (startPositionIndex + 1) % startPositionPool.Count;
-        Debug.Log("[Server]Assigned initial position of: " + startPositionPool[startPositionIndex] + " to userid: " + userId);
+        //Debug.Log("[Server]Assigned initial position of: " + startPositionPool[startPositionIndex] + " to userid: " + userId);
     }
 
     public class AnimationState
