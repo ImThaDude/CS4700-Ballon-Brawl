@@ -219,6 +219,9 @@ public class BalloonFighterBody : MonoBehaviour
 
             if (IsGrounded)
             {
+                var tempVel = rb.velocity;
+                tempVel.y = 0;
+                rb.velocity = tempVel;
                 rb.AddForce(Vector2.up * jumpImpulse);
                 timeOfNextAutoflap = Time.time + jumpToAutoFlapDelay;
 
