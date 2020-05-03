@@ -228,9 +228,6 @@ public class PlayerHandlerMVP : MonoBehaviour
 
     public void OnDeletePlayer(string userId) {
         Debug.Log("[PlayerHandleMVP]Deleting player... " + userId);
-        playerPool = new Dictionary<string, PlayerClass>();
-        spawningPlayers = new Queue<string>();
-        tempFlapTrigger = new Dictionary<string, bool>();
         if (tempFlapTrigger.ContainsKey(userId))
             tempFlapTrigger.Remove(userId);
         if (playerPool.ContainsKey(userId)) {
