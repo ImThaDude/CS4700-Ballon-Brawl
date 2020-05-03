@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class NetworkPlayerCollision : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public ClientNetworkManagerMVP client;
+
+    public void SendBalloonCollision(RaycastHit2D[] colliders)
     {
-        
+        if (client != null)
+        {
+            var userId = colliders[0].transform.parent.name;
+            var collisionPosition = colliders[0].point;
+            client.SendCollision(userId, collisionPosition);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
