@@ -39,6 +39,9 @@ public class ClientNetworkManagerMVP : MonoBehaviour
 
             client.OnReceivePlayerPositionData += playerHandler.OnReceivePositionFromPlayer;
             client.OnReceiveAnimationPlayerUpdate += playerHandler.OnReceiveAnimation;
+            client.OnReceivePlayerCollision += playerHandler.OnReceiveCollision;
+            client.OnReceiveDeletePlayer += playerHandler.OnDeletePlayer;
+            client.OnReceiveRedZone += playerHandler.OnReceiveRedZone;
             playerHandler.client = this;
 
             client.OnConnectedToServer += RequestForServerData;
@@ -58,9 +61,9 @@ public class ClientNetworkManagerMVP : MonoBehaviour
         }
     }
 
-    public void SendPosition(Vector3 pos) {
+    public void SendPosition(Vector3 pos, Vector3 vel) {
         if (ClientConnected) {
-            client.SendPosition(pos);
+            client.SendPosition(pos, vel);
         }
     }
 
@@ -70,10 +73,22 @@ public class ClientNetworkManagerMVP : MonoBehaviour
         }
     }
 
+    public void SendCollision(string collidedId, Vector3 collisionPosition) {
+        if (ClientConnected) {
+            client.SendCollision(collidedId, collisionPosition);
+        }
+    }
+
     public void RequestForServerData() {
         client.RequestForAllData();
         ClientConnected = true;
         Debug.Log("Requesting for all server data...");
+    }
+
+    public void DisconnectFromServer() {
+        if (ClientConnected) {
+            client.DisconnectFromServer();
+        }
     }
 
     void OnDestroy() {

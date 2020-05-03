@@ -48,7 +48,7 @@ public class TestingClientMVP : MonoBehaviour
 
         if (SendPosition)
         {
-            client.SendPosition(toBeSentPosition);
+            client.SendPosition(toBeSentPosition, Vector3.zero);
             SendPosition = false;
         }
     }

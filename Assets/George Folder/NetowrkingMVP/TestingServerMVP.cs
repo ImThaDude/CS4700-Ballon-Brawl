@@ -40,4 +40,9 @@ public class TestingServerMVP : MonoBehaviour
     void OnDestroy() {
         client.stopRunning = true;
     }
+
+    public void SendRedZone(float redZoneDistance) {
+        client.SendRedZoneToAllPeers(redZoneDistance);
+    }
+
 }

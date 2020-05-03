@@ -50,7 +50,6 @@ public class BalloonPop : MonoBehaviour
 
             var collidersVel = collidersBody.rb.velocity;
             var reflectiveDirection = collidersBody.transform.position - new Vector3(impactPoint.x, impactPoint.y, 0);
-            //collidersBody.rb.velocity = reflectiveDirection.normalized * collidersVel.magnitude;
 
             collidersBody.rb.AddForce(BallonPopForce * reflectiveDirection);
         }

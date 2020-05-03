@@ -11,6 +11,7 @@ public class ClientMVP
     public string ip = "localhost";
     public short port = 27757;
     public bool stopRunning = false;
+    NetManager client;
 
     public ClientMVP(string ip, short port, string userId) {
         UserId = userId;
@@ -22,7 +23,7 @@ public class ClientMVP
     {
         Debug.Log("Client started!");
         EventBasedNetListener listener = new EventBasedNetListener();
-        NetManager client = new NetManager(listener);
+        client = new NetManager(listener);
         client.Start();
         client.Connect(ip /* host ip or name */, port /* port */, "SomeConnectionKey" /* text key or NetDataWriter */);
 
@@ -51,8 +52,14 @@ public class ClientMVP
                     ReceiveMetadata(fromPeer, dataReader);
                     break;
                 case 5:
+                    ReceiveCollision(fromPeer, dataReader);
                     break;
                 case 6:
+                    //Delete player
+                    ReceiveDeleteRequest(fromPeer, dataReader);
+                    break;
+                case 7:
+                    ReceiveRedZone(fromPeer, dataReader);
                     break;
                 default:
                     break;
@@ -91,11 +98,14 @@ public class ClientMVP
         serverPeer.Send(writer, DeliveryMethod.ReliableOrdered);
     }
 
-    public void SendPosition(Vector3 pos) {
+    public void SendPosition(Vector3 pos, Vector3 vel) {
         var cmd = SendCommand(2);
         cmd.Put(pos.x);
         cmd.Put(pos.y);
         cmd.Put(pos.z);
+        cmd.Put(vel.x);
+        cmd.Put(vel.y);
+        cmd.Put(vel.z);
         serverPeer.Send(cmd, DeliveryMethod.ReliableOrdered);
         //Debug.Log("[Client]Sending Position: " + pos);
     }
@@ -117,14 +127,27 @@ public class ClientMVP
         serverPeer.Send(cmd, DeliveryMethod.ReliableOrdered);
     }
 
+    public void SendCollision(string userId, Vector3 collisionPosition) {
+        var cmd = SendCommand(5);
+        cmd.Put(userId);
+        cmd.Put(collisionPosition.x);
+        cmd.Put(collisionPosition.y);
+        cmd.Put(collisionPosition.z);
+        serverPeer.Send(cmd, DeliveryMethod.ReliableOrdered);
+    }
+
     public void ReceivePosition(NetPeer peer, NetDataReader reader) {
         var userId = reader.GetString();
         var x = reader.GetFloat();
         var y = reader.GetFloat();
         var z = reader.GetFloat();
         var pos = new Vector3(x, y, z);
+        var velx = reader.GetFloat();
+        var vely = reader.GetFloat();
+        var velz = reader.GetFloat();
+        var vel = new Vector3(velx, vely, velz);
         if (OnReceivePlayerPositionData != null) {
-            OnReceivePlayerPositionData(userId, pos);
+            OnReceivePlayerPositionData(userId, pos, vel);
         }
         //Debug.Log("[Client]Received Position: " + pos);
     }
@@ -150,6 +173,38 @@ public class ClientMVP
         }
     }
 
+    public void ReceiveCollision(NetPeer peer, NetDataReader reader) {
+        var userId = reader.GetString();
+        var collidedId = reader.GetString();
+        var collsionX = reader.GetFloat();
+        var collsionY = reader.GetFloat();
+        var collsionZ = reader.GetFloat();
+        var colPos = new Vector3(collsionX, collsionY, collsionZ);
+        if (OnReceivePlayerCollision != null) {
+            OnReceivePlayerCollision(userId, collidedId, colPos);
+        }
+    }
+
+    public void ReceiveDeleteRequest(NetPeer peer, NetDataReader reader) {
+        var userId = reader.GetString();
+        if (OnReceiveDeletePlayer != null) {
+            OnReceiveDeletePlayer(userId);
+        }
+    }
+
+    public void DisconnectFromServer() {
+        client.DisconnectAll();
+        stopRunning = true;
+    }
+
+    public void ReceiveRedZone(NetPeer peer, NetDataReader reader) {
+        //Debug.Log("Received Red Zone...");
+        var redZoneDistance = reader.GetFloat();
+        if (OnReceiveRedZone != null) {
+            OnReceiveRedZone(redZoneDistance);
+        } 
+    }
+
     NetDataWriter SendCommand(int index) {
         NetDataWriter writer = new NetDataWriter();
         writer.Put(index);
@@ -161,7 +216,7 @@ public class ClientMVP
     public ConnectedToServerEvent OnConnectedToServer;
 
     //This will send the player position data
-    public delegate void ReceivePlayerPositionDataEvent(string userId, Vector3 position);
+    public delegate void ReceivePlayerPositionDataEvent(string userId, Vector3 position, Vector3 velocity);
     public ReceivePlayerPositionDataEvent OnReceivePlayerPositionData;
 
     //This will send the animation updates
@@ -173,6 +228,14 @@ public class ClientMVP
     public ReceivePlayerMetadataEvent OnReceivePlayerMetadata;
 
     //This will send if this player has collided with someone else
-    public delegate void ReceivePlayerCollisionEvent(string userId, Vector3 position);
+    public delegate void ReceivePlayerCollisionEvent(string userId, string collidedId, Vector3 position);
     public ReceivePlayerCollisionEvent OnReceivePlayerCollision;
+
+    //This will request for player deletion
+    public delegate void ReceiveDeletePlayerEvent(string userId);
+    public ReceiveDeletePlayerEvent OnReceiveDeletePlayer;
+
+    //This will control the redzone
+    public delegate void ReceiveRedZoneEvent(float redZoneDistance);
+    public ReceiveRedZoneEvent OnReceiveRedZone;
 }

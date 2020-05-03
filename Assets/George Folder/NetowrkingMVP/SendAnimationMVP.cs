@@ -18,6 +18,8 @@ public class SendAnimationMVP : MonoBehaviour
     public Animator anim;
     public AnimationState state;
     public ClientNetworkManagerMVP client;
+    public bool Initialized = false;
+    public bool UpdateQueued = false;
 
     void Start()
     {
@@ -29,8 +31,12 @@ public class SendAnimationMVP : MonoBehaviour
     {
         if (state != null)
         {
-            anim.SetFloat("HP", Health);
-            state.HP = Health;
+            if (state.HP != Health)
+            {
+                anim.SetFloat("HP", Health);
+                state.HP = Health;
+                UpdateQueued = true;
+            }
         }
     }
 
@@ -38,8 +44,12 @@ public class SendAnimationMVP : MonoBehaviour
     {
         if (state != null)
         {
-            anim.SetBool("IsGrounded", IsGrounded);
-            state.IsGrounded = IsGrounded;
+            if (state.IsGrounded != IsGrounded)
+            {
+                anim.SetBool("IsGrounded", IsGrounded);
+                state.IsGrounded = IsGrounded;
+                UpdateQueued = true;
+            }
         }
     }
 
@@ -47,8 +57,12 @@ public class SendAnimationMVP : MonoBehaviour
     {
         if (state != null)
         {
-            anim.SetFloat("Movement", Mathf.Abs(moveAmount));
-            state.Movement = moveAmount;
+            if (state.Movement != moveAmount)
+            {
+                anim.SetFloat("Movement", Mathf.Abs(moveAmount));
+                state.Movement = moveAmount;
+                UpdateQueued = true;
+            }
         }
     }
 
@@ -56,8 +70,12 @@ public class SendAnimationMVP : MonoBehaviour
     {
         if (state != null)
         {
-            anim.SetFloat("Dir", moveAmount);
-            state.Dir = moveAmount;
+            if (state.Dir != moveAmount)
+            {
+                anim.SetFloat("Dir", moveAmount);
+                state.Dir = moveAmount;
+                UpdateQueued = true;
+            }
         }
     }
 
@@ -67,6 +85,7 @@ public class SendAnimationMVP : MonoBehaviour
         {
             anim.SetTrigger("Flap");
             state.Flap = !state.Flap;
+            UpdateQueued = true;
         }
     }
 
@@ -74,8 +93,11 @@ public class SendAnimationMVP : MonoBehaviour
     {
         if (state != null)
         {
-            anim.SetFloat("PumpProgress", PumpProgress);
-            state.PumpProgress = PumpProgress;
+            if (state.PumpProgress != PumpProgress) {
+                anim.SetFloat("PumpProgress", PumpProgress);
+                state.PumpProgress = PumpProgress;
+                UpdateQueued = true;
+            }
         }
     }
 
@@ -83,7 +105,11 @@ public class SendAnimationMVP : MonoBehaviour
     {
         if (state != null)
         {
-            client.SendAnimation(state.HP, state.IsGrounded, state.Movement, state.Dir, state.Flap, state.PumpProgress);
+            if (UpdateQueued || !Initialized) {
+                client.SendAnimation(state.HP, state.IsGrounded, state.Movement, state.Dir, state.Flap, state.PumpProgress);
+                UpdateQueued = false;
+                Initialized = true;
+            }
         }
     }
 

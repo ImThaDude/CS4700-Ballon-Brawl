@@ -70,6 +70,7 @@ public class ServerMVP
                     SendMetadataToAllPeers(peer);
                     break;
                 case 5:
+                    ReceiveCollision(peer, reader);
                     break;
                 case 6:
                     break;
@@ -77,6 +78,11 @@ public class ServerMVP
                     break;
             }
             reader.Recycle();
+        };
+
+        listener.PeerDisconnectedEvent += (peer, disconnectInfo) =>
+        {
+            DeletePlayerData(peer);
         };
 
         while (!stopRunning)
@@ -130,6 +136,10 @@ public class ServerMVP
             cmd.Put(pos.x);
             cmd.Put(pos.y);
             cmd.Put(pos.z);
+            var vel = positionPool[UserId].velocity;
+            cmd.Put(vel.x);
+            cmd.Put(vel.y);
+            cmd.Put(vel.z);
             peer.Send(cmd, DeliveryMethod.ReliableOrdered);
             //Debug.Log("[Server]Sent " + UserId + " position of " + pos + " to " + userIdPool[peer]);
         }
@@ -261,6 +271,7 @@ public class ServerMVP
     {
         //All positions will go here
         public Vector3 position;
+        public Vector3 velocity;
     }
 
     public Dictionary<string, PlayerPosition> positionPool;
@@ -273,9 +284,13 @@ public class ServerMVP
             positionPool.Add(UserId, new PlayerPosition() { });
         }
         float x = reader.GetFloat(), y = reader.GetFloat(), z = reader.GetFloat();
+        float velx = reader.GetFloat(), vely = reader.GetFloat(), velz = reader.GetFloat();
         positionPool[UserId].position.x = x;
         positionPool[UserId].position.y = y;
         positionPool[UserId].position.z = z;
+        positionPool[UserId].velocity.x = velx;
+        positionPool[UserId].velocity.y = vely;
+        positionPool[UserId].velocity.z = velz;
         //Debug.Log("[Server]ReceivedPosition: " + x + " " + y + " " + z + " for user " + UserId);
     }
 
@@ -297,12 +312,87 @@ public class ServerMVP
         metadataPool[UserId].HP = reader.GetInt();
     }
 
+    public void ReceiveCollision(NetPeer peer, NetDataReader reader)
+    {
+        string userId = reader.GetString();
+        string collidedId = reader.GetString();
+        float x = reader.GetFloat(), y = reader.GetFloat(), z = reader.GetFloat();
+        if (peerPool.ContainsKey(collidedId))
+        {
+            var cmd = SendCommand(5);
+            cmd.Put(userId);
+            cmd.Put(collidedId);
+            cmd.Put(x);
+            cmd.Put(y);
+            cmd.Put(z);
+            peerPool[collidedId].Send(cmd, DeliveryMethod.ReliableOrdered);
+        }
+    }
+
     public List<Vector3> startPositionPool;
     public int startPositionIndex = 0;
 
     public void PushPositionIntoDatabase(Vector3 position)
     {
         startPositionPool.Add(position);
+    }
+
+    public void DeletePlayerData(NetPeer peer)
+    {
+        string userId = "";
+
+        if (userIdPool.ContainsKey(peer))
+        {
+            userId = userIdPool[peer];
+
+            Debug.Log("Deleting player data... " + userId);
+
+            //Clear player data
+            if (positionPool.ContainsKey(userId))
+                positionPool.Remove(userId);
+            if (animationPool.ContainsKey(userId))
+                animationPool.Remove(userId);
+            if (metadataPool.ContainsKey(userId))
+                metadataPool.Remove(userId);
+            if (userIdPool.ContainsKey(peer))
+                userIdPool.Remove(peer);
+            if (peerPool.ContainsKey(userId))
+                peerPool.Remove(userId);
+
+            SendDeleteRequestToAllPeers(userId);
+        }
+    }
+
+    public async void SendDeleteRequestToAllPeers(string userId)
+    {
+        Debug.Log("[ServerMVP]Sending delete request for " + userId);
+        foreach (var peer in userIdPool.Keys)
+        {
+            SendDeleteRequest(peer, userId);
+            await Task.Delay(2);
+        }
+    }
+
+    public void SendDeleteRequest(NetPeer peer, string userId)
+    {
+        var cmd = SendCommand(6);
+        cmd.Put(userId);
+        peer.Send(cmd, DeliveryMethod.ReliableOrdered);
+    }
+
+    public async void SendRedZoneToAllPeers(float redZoneDistance) {
+        foreach (var peer in userIdPool.Keys)
+        {
+            //Debug.Log("Sending redzone...");
+            SendRedZone(peer, redZoneDistance);
+            await Task.Delay(2);
+        }
+    }
+
+    public void SendRedZone(NetPeer peer, float redZoneDistance) {
+        var cmd = SendCommand(7);
+        cmd.Put(redZoneDistance);
+        peer.Send(cmd, DeliveryMethod.ReliableOrdered);
     }
 
 }

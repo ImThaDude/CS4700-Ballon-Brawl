@@ -42,7 +42,7 @@ public class BoxHitboxCollision : MonoBehaviour
     }
 
     void OnDrawGizmos() {
-        Gizmos.DrawCube(BoxHitbox.transform.position, BoxHitbox.size);
+        //Gizmos.DrawCube(BoxHitbox.transform.position, BoxHitbox.size);
     }
 
 }

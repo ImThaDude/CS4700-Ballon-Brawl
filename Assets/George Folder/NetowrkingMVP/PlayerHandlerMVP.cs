@@ -11,6 +11,10 @@ public class PlayerHandlerMVP : MonoBehaviour
     public class PositionEvent : UnityEvent<Vector3> {
     }
 
+    [System.Serializable]
+    public class FloatEvent : UnityEvent<float> {
+    }
+
     public ClientNetworkManagerMVP client;
 
     public Dictionary<string, PlayerClass> playerPool;
@@ -26,6 +30,7 @@ public class PlayerHandlerMVP : MonoBehaviour
         playerPool = new Dictionary<string, PlayerClass>();
         spawningPlayers = new Queue<string>();
         tempFlapTrigger = new Dictionary<string, bool>();
+        deletePlayerQueue = new Queue<string>();
     }
 
     void Update()
@@ -43,7 +48,7 @@ public class PlayerHandlerMVP : MonoBehaviour
         }
 
         foreach (var a in playerPool) {
-            UpdateReceivePositionFromPlayer(a.Key, a.Value.playerPosition.position);
+            UpdateReceivePositionFromPlayer(a.Key, a.Value.playerPosition.position, a.Value.playerPosition.velocity);
             var anim = a.Value.animation;
             UpdateReceiveAnimation(a.Key, anim.HP, anim.IsGrounded, anim.Movement, anim.Dir, anim.Flap, anim.PumpProgress);
         }
@@ -51,6 +56,25 @@ public class PlayerHandlerMVP : MonoBehaviour
         if (queuePositionChange) {
             queuePositionChange = false;
             OnSelfPositionUpdate.Invoke(positionChange);
+        }
+
+        if (queuePlayerCollision) {
+            queuePlayerCollision = false;
+            OnPlayerCollision.Invoke(collisionPosition);
+        }
+
+        //Delete player queue
+        if (deletePlayerQueue.Count > 0) {
+            while (deletePlayerQueue.Count > 0) {
+                var userId = deletePlayerQueue.Dequeue();
+                Destroy(playerPool[userId].created);
+                playerPool.Remove(userId);                
+            }
+        }
+
+        if (queueRedZoneChange) {
+            queueRedZoneChange = false;
+            OnRedZoneChange.Invoke(redZoneFloat);
         }
     }
 
@@ -82,15 +106,20 @@ public class PlayerHandlerMVP : MonoBehaviour
     {
         //All positions will go here
         public Vector3 position;
+        public Vector3 velocity;
     }
 
-    public void UpdateReceivePositionFromPlayer(string userId, Vector3 position)
+    public void UpdateReceivePositionFromPlayer(string userId, Vector3 position, Vector3 velocity)
     {
         if (playerPool.ContainsKey(userId))
         {
             if (playerPool[userId].created != null)
             {
                 playerPool[userId].created.transform.position = position;
+                var phy = playerPool[userId].created.GetComponent<SimulatedPhysics>();
+                if (phy != null) {
+                    phy.SetVelocity(velocity);
+                }
             }
         }
     }
@@ -98,12 +127,13 @@ public class PlayerHandlerMVP : MonoBehaviour
     public bool queuePositionChange = false;
     public Vector3 positionChange;
 
-    public void OnReceivePositionFromPlayer(string userId, Vector3 position)
+    public void OnReceivePositionFromPlayer(string userId, Vector3 position, Vector3 velocity)
     {
         OnReceiveFromPlayer(userId);
         if (playerPool.ContainsKey(userId))
         {
             playerPool[userId].playerPosition.position = position;
+            playerPool[userId].playerPosition.velocity = velocity;
         }
 
         if (userId == client.userId) {
@@ -179,6 +209,42 @@ public class PlayerHandlerMVP : MonoBehaviour
     public void OnReceiveMetadata(string userId, int HP)
     {
 
+    }
+
+    public PositionEvent OnPlayerCollision;
+    public Vector3 collisionPosition;
+    public bool queuePlayerCollision;
+
+    public void OnReceiveCollision(string userId, string collidedId, Vector3 collidedPos) {
+        if (collidedId == client.userId) {
+            //Self update
+            queuePlayerCollision = true;
+            collisionPosition = collidedPos;
+        }
+    }
+
+    //Delete player in the queue
+    public Queue<string> deletePlayerQueue;
+
+    public void OnDeletePlayer(string userId) {
+        Debug.Log("[PlayerHandleMVP]Deleting player... " + userId);
+        playerPool = new Dictionary<string, PlayerClass>();
+        spawningPlayers = new Queue<string>();
+        tempFlapTrigger = new Dictionary<string, bool>();
+        if (tempFlapTrigger.ContainsKey(userId))
+            tempFlapTrigger.Remove(userId);
+        if (playerPool.ContainsKey(userId)) {
+            deletePlayerQueue.Enqueue(userId);
+        }
+    }
+
+    public FloatEvent OnRedZoneChange;
+    public float redZoneFloat;
+    public bool queueRedZoneChange;
+
+    public void OnReceiveRedZone(float redZoneDistance) {
+        redZoneFloat = redZoneDistance;
+        queueRedZoneChange = true;
     }
 
 }

@@ -65,7 +65,8 @@ public class BalloonFighterBody : MonoBehaviour
         {
             foreach (var a in GroundPositionRays)
             {
-                if (Physics2D.Raycast(a.position, Vector2.down, groundCastLength, groundMask)) {
+                if (Physics2D.Raycast(a.position, Vector2.down, groundCastLength, groundMask))
+                {
                     return true;
                 }
             }
@@ -136,6 +137,16 @@ public class BalloonFighterBody : MonoBehaviour
     public void SetPosition(Vector3 position)
     {
         transform.position = position;
+    }
+
+    float BallonPopForce = 500;
+
+    public void ImpactWtihObject(Vector3 colPosition)
+    {
+        var detectorVel = rb.velocity;
+        var reflectiveDirection = transform.position - new Vector3(colPosition.x, colPosition.y, 0);
+
+        rb.AddForce(BallonPopForce * reflectiveDirection.normalized);
     }
     //------------------------
 
@@ -231,7 +242,6 @@ public class BalloonFighterBody : MonoBehaviour
             //canFly is George invasion variable
             else if (canFly)
             {
-
                 Vector2 dir = new Vector2(
                     moveAmount, upwardFlapBias).normalized;
                 rb.AddForce(dir * flapImpulse);
