@@ -1,0 +1,37 @@
+4/16/2020
+
+Louis Guan  - louisguan@cpp.edu - ID: 011724986
+
+Asked about controls
+Commented on lack of pause feature, menu
+Arrow keys didn't seem to do very much
+Dying repeatedly
+
+Seemed like input did nothing
+Thought up/down arrow keys did nothing
+Auto-flap needs a buff
+
+Give the player more time to learn
+No menu
+No score yet
+
+Lightning balls were moving towards player
+
+Never made it past 1st wave
+
+
+Jeremy Becker - jmbecker@cpp.edu - ID: 011509368
+
+Seems to be holding space... not moving left/right
+Ball got stuck off the top of the screen
+Wants background
+Maybe too chaotic... things seem to move too fast
+
+Made it past the first wave
+
+If levels, make first level easier.
+
+Gravity feels too strong... holding spacebar is too weak,
+and mashing is weak.
+
+Needs music.
