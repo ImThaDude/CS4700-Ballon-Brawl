@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Threading;
 using System;
+using UnityEngine.Events;
 
 public class ClientNetworkManagerMVP : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class ClientNetworkManagerMVP : MonoBehaviour
     public string ip = "localhost";
     public short port = 27757;
     public string userId = "TestUser";
+
+    public UnityEvent OnStartedClient;
 
     // Start is called before the first frame update
     void Start()
@@ -61,37 +64,58 @@ public class ClientNetworkManagerMVP : MonoBehaviour
         }
     }
 
-    public void SendPosition(Vector3 pos, Vector3 vel) {
-        if (ClientConnected) {
+    public void SendPosition(Vector3 pos, Vector3 vel)
+    {
+        if (ClientConnected)
+        {
             client.SendPosition(pos, vel);
         }
     }
 
-    public void SendAnimation(float HP, bool IsGrounded, float Movement, float Dir, bool Flap, float PumpProgress) {
-        if (ClientConnected) {
+    public void SendAnimation(float HP, bool IsGrounded, float Movement, float Dir, bool Flap, float PumpProgress)
+    {
+        if (ClientConnected)
+        {
             client.SendAnimation(HP, IsGrounded, Movement, Dir, Flap, PumpProgress);
         }
     }
 
-    public void SendCollision(string collidedId, Vector3 collisionPosition) {
-        if (ClientConnected) {
+    public void SendCollision(string collidedId, Vector3 collisionPosition)
+    {
+        if (ClientConnected)
+        {
             client.SendCollision(collidedId, collisionPosition);
         }
     }
 
-    public void RequestForServerData() {
+    public void RequestForServerData()
+    {
         client.RequestForAllData();
         ClientConnected = true;
         Debug.Log("Requesting for all server data...");
+        OnStartedClient.Invoke();
     }
 
-    public void DisconnectFromServer() {
-        if (ClientConnected) {
+    public void DisconnectFromServer()
+    {
+        if (ClientConnected)
+        {
             client.DisconnectFromServer();
         }
     }
 
-    void OnDestroy() {
+    void OnDestroy()
+    {
         client.stopRunning = true;
+    }
+
+    public void ChangeIP(string ip)
+    {
+        this.ip = ip;
+    }
+
+    public void InitializeClient()
+    {
+        StartClient = true;
     }
 }

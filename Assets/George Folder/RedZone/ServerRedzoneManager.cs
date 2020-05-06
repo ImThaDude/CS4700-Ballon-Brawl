@@ -26,4 +26,8 @@ public class ServerRedzoneManager : MonoBehaviour
             }
         }
     }
+
+    public void StartRedZone() {
+        StartReduceRedZone = true;
+    }
 }
