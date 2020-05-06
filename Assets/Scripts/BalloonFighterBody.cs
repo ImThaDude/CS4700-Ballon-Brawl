@@ -307,10 +307,15 @@ public class BalloonFighterBody : MonoBehaviour
         }
         else if (canWalk)
         {
-            rb.velocity = new Vector2(
+			Vector2 groundVelocity = Vector2.zero;
+			if(StandingCastHit.rigidbody != null) {
+				groundVelocity = StandingCastHit.rigidbody.velocity;
+			}
+
+			rb.velocity = new Vector2(
                 moveAmount * groundMovementSpeed,
                 rb.velocity.y
-            ) + StandingCastHit.rigidbody.velocity;
+            ) + groundVelocity;
         }
 
         anim.SetFloat("Movement", Mathf.Abs(moveAmount));
