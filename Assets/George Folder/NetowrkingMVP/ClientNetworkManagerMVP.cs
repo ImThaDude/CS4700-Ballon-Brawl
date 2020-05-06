@@ -31,6 +31,7 @@ public class ClientNetworkManagerMVP : MonoBehaviour
     public bool ClientConnected = false;
 
     public PlayerHandlerMVP playerHandler;
+    public bool startClientQueue;
 
     void Update()
     {
@@ -61,6 +62,11 @@ public class ClientNetworkManagerMVP : MonoBehaviour
         {
             t.Abort();
             StopThread = false;
+        }
+
+        if (startClientQueue) {
+            startClientQueue = false;
+            OnStartedClient.Invoke();
         }
     }
 
@@ -93,7 +99,7 @@ public class ClientNetworkManagerMVP : MonoBehaviour
         client.RequestForAllData();
         ClientConnected = true;
         Debug.Log("Requesting for all server data...");
-        OnStartedClient.Invoke();
+        startClientQueue = true;
     }
 
     public void DisconnectFromServer()

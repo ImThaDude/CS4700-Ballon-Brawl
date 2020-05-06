@@ -174,7 +174,7 @@ public class PlayerHandlerMVP : MonoBehaviour
         {
             if (playerPool[userId].created != null)
             {
-                var anim = playerPool[userId].created.GetComponent<Animator>();
+                var anim = playerPool[userId].created.GetComponentInChildren<Animator>();
                 anim.SetFloat("HP", HP);
                 anim.SetBool("IsGrounded", IsGrounded);
                 anim.SetFloat("Movement", Movement);

@@ -23,7 +23,9 @@ public class SendAnimationMVP : MonoBehaviour
 
     void Start()
     {
-        anim = GetComponent<Animator>();
+        if (anim == null) {
+            anim = GetComponent<Animator>();
+        }
         state = new AnimationState();
     }
 
