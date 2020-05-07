@@ -25,10 +25,11 @@ public class LightningBallMover : MonoBehaviour
 
     private void Update()
     {
-		if(transform.position.y > btElem.PlayField.max.y || 
-		   transform.position.y < btElem.PlayField.min.y) {
-
-			rb.velocity = new Vector2(rb.velocity.x, -rb.velocity.y);
+		if(transform.position.y > btElem.PlayField.max.y) {
+			rb.velocity = new Vector2(rb.velocity.x, -Mathf.Abs(rb.velocity.y));
+		}
+		else if (transform.position.y < btElem.PlayField.min.y) {
+			rb.velocity = new Vector2(rb.velocity.x, Mathf.Abs(rb.velocity.y));
 		}
     }
 }
