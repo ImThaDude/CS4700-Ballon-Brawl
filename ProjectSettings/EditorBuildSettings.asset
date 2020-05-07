@@ -14,10 +14,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/George Folder/MultiplayerGamemode/newGamemode - client.unity
     guid: d8cfb99189555d74e8a9b8d7ecad8c9d
-  - enabled: 0
+  - enabled: 1
     path: Assets/George Folder/MultiplayerGamemode/newGamemode - server.unity
     guid: 3a4c18e5f9f9fd14c9eb69dae9da7f14
-  - enabled: 1
+  - enabled: 0
     path: Assets/George Folder/MultiplayerGamemode/newGamemode - clientai.unity
     guid: 4169ae9127231dc45bf01473b436248f
   m_configObjects:

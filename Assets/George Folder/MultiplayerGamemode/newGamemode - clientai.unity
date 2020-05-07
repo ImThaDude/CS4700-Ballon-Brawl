@@ -37228,6 +37228,10 @@ PrefabInstance:
       propertyPath: redZoneCircle
       value: 
       objectReference: {fileID: 815933188}
+    - target: {fileID: 2871080154131239988, guid: 6a041a9b146f1104695bdfb1e04d72d5, type: 3}
+      propertyPath: BalloonPop
+      value: 
+      objectReference: {fileID: 8300000, guid: 77346a8decb10104f8decba47fbf2457, type: 3}
     - target: {fileID: 8886960121723237344, guid: 6a041a9b146f1104695bdfb1e04d72d5, type: 3}
       propertyPath: m_Name
       value: Player
