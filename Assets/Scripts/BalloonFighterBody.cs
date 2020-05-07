@@ -246,7 +246,7 @@ public class BalloonFighterBody : MonoBehaviour
 		rb.velocity = new Vector2(rb.velocity.x, 0f);
         rb.AddForce(Vector2.up * faintImpulseJump);
         hasFainted = true;
-		Destroy(gameObject, faintDespawnDelay);	// TODO Is hack
+		//Destroy(gameObject, faintDespawnDelay);	// TODO Is hack
     }
 	#endregion
 
