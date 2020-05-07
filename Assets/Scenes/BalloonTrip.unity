@@ -1124,6 +1124,7 @@ GameObject:
   - component: {fileID: 2001433699}
   - component: {fileID: 2001433700}
   - component: {fileID: 2001433701}
+  - component: {fileID: 2001433702}
   m_Layer: 2
   m_Name: ObjectArea
   m_TagString: Untagged
@@ -1196,6 +1197,25 @@ MonoBehaviour:
   minSpawnCount: 1
   maxSpawnCount: 3
   balloonSpawnProbability: 0.25
+--- !u!114 &2001433702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001433698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 807baaf3ad533d8479e1e8d6e0bda81a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playField: {fileID: 2001433700}
+  starPrefab: {fileID: 9181620862058928911, guid: dbf039c6eb3c02740a0d3c4e720dfddf, type: 3}
+  starVelocity: {x: -0.25, y: 0}
+  minSpawnPeriod: 1
+  maxSpawnPeriod: 2
+  prepopulate: 1
+  prepopulateCount: 50
 --- !u!1001 &8467519237872382599
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1210,6 +1230,10 @@ PrefabInstance:
     - target: {fileID: 8467519238401904616, guid: bd78eb337531f934a97a6305f4144fd5, type: 3}
       propertyPath: m_Name
       value: FrogPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467519238401904624, guid: bd78eb337531f934a97a6305f4144fd5, type: 3}
+      propertyPath: faintImpulseJump
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 8467519238401904629, guid: bd78eb337531f934a97a6305f4144fd5, type: 3}
       propertyPath: m_LocalPosition.x

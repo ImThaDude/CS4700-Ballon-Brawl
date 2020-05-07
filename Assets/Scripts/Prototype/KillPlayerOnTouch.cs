@@ -9,7 +9,7 @@ namespace Prototype {
 				other.GetComponent<BalloonFighterHealth>();
 
 			if(otherHealth != null) {
-				otherHealth.Kill();
+				otherHealth.Health = -1;
 			}
 		}
 	}
