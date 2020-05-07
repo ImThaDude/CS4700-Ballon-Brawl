@@ -768,6 +768,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8467519237872382601, guid: bd78eb337531f934a97a6305f4144fd5, type: 3}
+      propertyPath: balloonPopClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ed0535b6ed2b9c340bbe546b446d0719, type: 3}
     - target: {fileID: 8467519238401904616, guid: bd78eb337531f934a97a6305f4144fd5, type: 3}
       propertyPath: m_Name
       value: FrogPlayer

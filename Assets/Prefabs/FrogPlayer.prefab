@@ -190,7 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 8467519238401904627}
   anim: {fileID: 7219903676423266760}
-  jumpAudioClip: {fileID: 8300000, guid: e56aa4e7115b143418ec30871b764f32, type: 3}
+  jumpAudioClip: {fileID: 8300000, guid: 5f0316070a2888144984756f7aedea72, type: 3}
   jumpImpulse: 250
   jumpToAutoFlapDelay: 0.5
   flapImpulse: 150
