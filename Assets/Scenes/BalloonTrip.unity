@@ -602,7 +602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d145eed3b41a1274fa2c08ebc4d77726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initVelocity: {x: 2, y: 0}
+  initVelocity: {x: -2, y: 0}
   unparentOnDestroy: {fileID: 1248174713}
 --- !u!4 &762095248
 Transform:
@@ -1186,8 +1186,8 @@ MonoBehaviour:
   logger: {fileID: 0}
   playField: {fileID: 2001433700}
   lightningBallPrefab: {fileID: 2670992351744564901, guid: 2589224cbdb597c44b4642e6927bdff4, type: 3}
-  objMinInitVelocity: {x: 2, y: -3}
-  objMaxInitVelocity: {x: 2.25, y: 3}
+  objMinInitVelocity: {x: -2, y: -3}
+  objMaxInitVelocity: {x: -2.25, y: 3}
   breakDuration: 5
   waveDuration: 10
   minSpawnDelay: 0.5

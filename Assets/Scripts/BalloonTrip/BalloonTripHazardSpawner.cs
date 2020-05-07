@@ -69,7 +69,7 @@ public class BalloonTripHazardSpawner : MonoBehaviour
 
 	private void SpawnLightningBall() {
 		Vector3 hazardPos = new Vector3(
-			playField.bounds.min.x,
+			playField.bounds.max.x,
 			Random.Range(playField.bounds.min.y, playField.bounds.max.y)
 		);
 
@@ -80,12 +80,22 @@ public class BalloonTripHazardSpawner : MonoBehaviour
 			transform
 		);
 
+		/*
 		ball.GetComponent<LightningBallMover>().playField =
 			playField.bounds;
 
 		ball.GetComponent<Rigidbody2D>().velocity = new Vector2(
 			Random.Range(objMinInitVelocity.x, objMaxInitVelocity.x),
 			Random.Range(objMinInitVelocity.y, objMaxInitVelocity.y)
+		);
+		*/
+
+		ball.GetComponent<BalloonTripElement>().Init(
+			playField.bounds,
+			new Vector2(
+				Random.Range(objMinInitVelocity.x, objMaxInitVelocity.x),
+				Random.Range(objMinInitVelocity.y, objMaxInitVelocity.y)
+			)
 		);
 	}
 }

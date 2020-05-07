@@ -195,7 +195,7 @@ MonoBehaviour:
   jumpToAutoFlapDelay: 0.5
   flapImpulse: 150
   autoFlapImpulse: 175
-  autoFlapPeriod: 0.3
+  autoFlapPeriod: 0.2
   upwardFlapBias: 1.25
   parachuteVelocity: 2
   parachuteClampLerp: 0.1
@@ -235,7 +235,7 @@ MonoBehaviour:
   body: {fileID: 8467519238401904624}
   logger: {fileID: 0}
   deathPrefab: {fileID: 0}
-  balloonPopClip: {fileID: 8300000, guid: 09da4d38af3080b4ba405cf0e9fa1b88, type: 3}
+  balloonPopClip: {fileID: 8300000, guid: ed0535b6ed2b9c340bbe546b446d0719, type: 3}
   balloonRecoverClip: {fileID: 8300000, guid: c78d8b03c18a2e848a38e3abd8a49a96, type: 3}
   oneBalloonRecoveryTime: 15
   damageTrigger: 0
