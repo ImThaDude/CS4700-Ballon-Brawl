@@ -237,7 +237,8 @@ public class BalloonFighterBody : MonoBehaviour
                 timeOfNextAutoflap = Time.time + jumpToAutoFlapDelay;
 
                 //Some more George invasion.
-                AudioSource.PlayClipAtPoint(jumpAudioClip, transform.position);
+                if (jumpAudioClip != null)
+                    AudioSource.PlayClipAtPoint(jumpAudioClip, transform.position);
             }
             //canFly is George invasion variable
             else if (canFly)
@@ -248,7 +249,8 @@ public class BalloonFighterBody : MonoBehaviour
                 timeOfNextAutoflap = Time.time + autoFlapPeriod;
 
                 //Some more George invasion.
-                AudioSource.PlayClipAtPoint(jumpAudioClip, transform.position);
+                if (jumpAudioClip != null)
+                    AudioSource.PlayClipAtPoint(jumpAudioClip, transform.position);
 
                 //anim.SetTrigger("Flap");
                 animMVP.UpdateFlap(true);

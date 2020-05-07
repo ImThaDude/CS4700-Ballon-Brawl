@@ -2413,6 +2413,8 @@ Transform:
   - {fileID: 1724823248}
   - {fileID: 2116104711}
   - {fileID: 1536935357}
+  - {fileID: 837348389}
+  - {fileID: 670408580}
   m_Father: {fileID: 1679186381}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2433,7 +2435,7 @@ MonoBehaviour:
   AIReactionTime: 0.75
   currReactionTime: 0
   currentState: {fileID: 0}
-  AIEnabled: 0
+  AIEnabled: 1
 --- !u!1 &128122526
 GameObject:
   m_ObjectHideFlags: 0
@@ -3352,7 +3354,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &203959414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5178,7 +5180,7 @@ MonoBehaviour:
         m_CallState: 2
   StopClient: 0
   StopThread: 0
-  StartClient: 0
+  StartClient: 1
   toBeSentPosition: {x: 0, y: 0, z: 0}
   ClientConnected: 0
   playerHandler: {fileID: 1951558840}
@@ -11497,6 +11499,51 @@ Transform:
   m_Father: {fileID: 292360731}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &670408579
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 670408580}
+  - component: {fileID: 670408581}
+  m_Layer: 9
+  m_Name: Heal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &670408580
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670408579}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 126835566}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &670408581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670408579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c871dd1882ace044cbafbdd57ee0cae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mind: {fileID: 1679186379}
+  idleModifier: 50
 --- !u!1 &679074198
 GameObject:
   m_ObjectHideFlags: 0
@@ -14494,6 +14541,64 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834098803}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &837348388
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 837348389}
+  - component: {fileID: 837348390}
+  m_Layer: 9
+  m_Name: Run
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &837348389
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837348388}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 126835566}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &837348390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837348388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b81a00a5087d630479df20e0e2d8bcb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetRefresh: 5
+  detectionRadious: 9
+  currTargetRefresh: 5
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  detectedEnemies: []
+  fastestClickSpeed: 0.1
+  body: {fileID: 1679186384}
+  runawayDesireRate: 9
+  closenessModifier: 100
+  hurryEscape: 4
+  poolMVP: {fileID: 0}
+  enemyBallonHeightModifier: 0.1
+  mind: {fileID: 1679186379}
 --- !u!1 &842704335
 GameObject:
   m_ObjectHideFlags: 0
@@ -35723,7 +35828,7 @@ MonoBehaviour:
   closenessDesireRate: 5
   closenessModifier: 100
   poolMVP: {fileID: 0}
-  enemyBallonHeightModifier: 0.1
+  enemyBallonHeightModifier: 0.4
 --- !u!1 &2118735531
 GameObject:
   m_ObjectHideFlags: 0
@@ -37103,6 +37208,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 393429289, guid: 6a041a9b146f1104695bdfb1e04d72d5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1679186379, guid: 6a041a9b146f1104695bdfb1e04d72d5, type: 3}
       propertyPath: client
       value: 
@@ -37122,6 +37231,10 @@ PrefabInstance:
     - target: {fileID: 8886960121723237344, guid: 6a041a9b146f1104695bdfb1e04d72d5, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8886960121723237368, guid: 6a041a9b146f1104695bdfb1e04d72d5, type: 3}
+      propertyPath: jumpAudioClip
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8886960121723237369, guid: 6a041a9b146f1104695bdfb1e04d72d5, type: 3}
       propertyPath: m_Actions
