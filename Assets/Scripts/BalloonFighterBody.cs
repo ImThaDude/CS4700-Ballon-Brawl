@@ -48,6 +48,7 @@ public class BalloonFighterBody : MonoBehaviour
 	// TODO These should get removed and we should make a death object
     public bool hasFainted = false;
     public float faintImpulseJump = 100f;
+	public float faintDespawnDelay = 2f;
 
     [Header("Standing")]
     [Tooltip("Maximum speed while on the ground.")]
@@ -240,10 +241,12 @@ public class BalloonFighterBody : MonoBehaviour
     public void Faint()
     {
 		Debug.Log("Faint");
-        //BeginParachuting(false);
-        Drop();
+		//BeginParachuting(false);
+		//Drop();
+		rb.velocity = new Vector2(rb.velocity.x, 0f);
         rb.AddForce(Vector2.up * faintImpulseJump);
         hasFainted = true;
+		//Destroy(gameObject, faintDespawnDelay);	// TODO Is hack
     }
 	#endregion
 
@@ -307,10 +310,15 @@ public class BalloonFighterBody : MonoBehaviour
         }
         else if (canWalk)
         {
-            rb.velocity = new Vector2(
+			Vector2 groundVelocity = Vector2.zero;
+			if(StandingCastHit.rigidbody != null) {
+				groundVelocity = StandingCastHit.rigidbody.velocity;
+			}
+
+			rb.velocity = new Vector2(
                 moveAmount * groundMovementSpeed,
                 rb.velocity.y
-            ) + StandingCastHit.rigidbody.velocity;
+            ) + groundVelocity;
         }
 
         anim.SetFloat("Movement", Mathf.Abs(moveAmount));

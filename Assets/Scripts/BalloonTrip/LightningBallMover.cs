@@ -4,21 +4,18 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(BalloonTripElement))]
 public class LightningBallMover : MonoBehaviour
 {
-	// This is really, *really* shoddy. We should be using triggers
-	// or whatnot to markout the zone, but for now, I'll just have
-	// to give you some floats to track the areas.
-	[HideInInspector] public Bounds playField;
-	//public Vector2 initVelocity;
-
-
 	private Rigidbody2D rb;
+	private BalloonTripElement btElem;
 
 	private void Awake() {
 		rb = GetComponent<Rigidbody2D>();
+		btElem = GetComponent<BalloonTripElement>();
 
 		Assert.IsNotNull(rb);
+		Assert.IsNotNull(btElem);
 	}
 
 	private void OnEnable()
@@ -28,12 +25,11 @@ public class LightningBallMover : MonoBehaviour
 
     private void Update()
     {
-		if(transform.position.x > playField.max.x) {
-			Destroy(gameObject);
+		if(transform.position.y > btElem.PlayField.max.y) {
+			rb.velocity = new Vector2(rb.velocity.x, -Mathf.Abs(rb.velocity.y));
 		}
-
-		if(transform.position.y > playField.max.y || transform.position.y < playField.min.y) {
-			rb.velocity = new Vector2(rb.velocity.x, -rb.velocity.y);
+		else if (transform.position.y < btElem.PlayField.min.y) {
+			rb.velocity = new Vector2(rb.velocity.x, Mathf.Abs(rb.velocity.y));
 		}
     }
 }

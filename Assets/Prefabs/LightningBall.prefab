@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4384106296510555998}
   - component: {fileID: 4384106296510555996}
   - component: {fileID: 4384106296510555971}
+  - component: {fileID: 6810338633951767972}
   m_Layer: 12
   m_Name: LightningBall
   m_TagString: Untagged
@@ -167,7 +168,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e36bcab1f7437584792da5599c840773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playField:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 2, y: 3, z: 0}
-  initVelocity: {x: 1, y: 2}
+--- !u!114 &6810338633951767972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2670992351744564901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61c10d895cfafad42b18a2a2f49beab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

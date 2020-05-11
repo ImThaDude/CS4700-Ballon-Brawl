@@ -51,7 +51,8 @@ public class BalloonFighterHealth : MonoBehaviour
     }
 
 	public void Kill() {
-		Destroy(gameObject);
+		Health = -1;
+		Destroy(gameObject, 2f);
 
 		if(deathPrefab != null) {
 			Instantiate(deathPrefab, transform.position, deathPrefab.transform.rotation, null);

@@ -190,12 +190,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 8467519238401904627}
   anim: {fileID: 7219903676423266760}
-  jumpAudioClip: {fileID: 8300000, guid: e56aa4e7115b143418ec30871b764f32, type: 3}
+  jumpAudioClip: {fileID: 8300000, guid: 5f0316070a2888144984756f7aedea72, type: 3}
   jumpImpulse: 250
   jumpToAutoFlapDelay: 0.5
   flapImpulse: 150
   autoFlapImpulse: 175
-  autoFlapPeriod: 0.3
+  autoFlapPeriod: 0.2
   upwardFlapBias: 1.25
   parachuteVelocity: 2
   parachuteClampLerp: 0.1
@@ -234,7 +234,8 @@ MonoBehaviour:
   anim: {fileID: 7219903676423266760}
   body: {fileID: 8467519238401904624}
   logger: {fileID: 0}
-  balloonPopClip: {fileID: 8300000, guid: 09da4d38af3080b4ba405cf0e9fa1b88, type: 3}
+  deathPrefab: {fileID: 0}
+  balloonPopClip: {fileID: 8300000, guid: ed0535b6ed2b9c340bbe546b446d0719, type: 3}
   balloonRecoverClip: {fileID: 8300000, guid: c78d8b03c18a2e848a38e3abd8a49a96, type: 3}
   oneBalloonRecoveryTime: 15
   damageTrigger: 0
@@ -248,7 +249,7 @@ PrefabInstance:
     - target: {fileID: -7948594106588810392, guid: 4320971f9ee7167498bd22f34c3cecad, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 951769ff748f7b549bc2211211e13f20, type: 2}
+      objectReference: {fileID: 9100000, guid: 783f0eb4b194f94448c8cd997257037b, type: 2}
     - target: {fileID: -2599827748551243771, guid: 4320971f9ee7167498bd22f34c3cecad, type: 3}
       propertyPath: m_Name
       value: BalloonFrog
@@ -263,7 +264,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1645581112781051228, guid: 4320971f9ee7167498bd22f34c3cecad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.185
       objectReference: {fileID: 0}
     - target: {fileID: 1645581112781051228, guid: 4320971f9ee7167498bd22f34c3cecad, type: 3}
       propertyPath: m_LocalPosition.z
@@ -313,60 +314,3 @@ Animator:
   m_CorrespondingSourceObject: {fileID: -7948594106588810392, guid: 4320971f9ee7167498bd22f34c3cecad, type: 3}
   m_PrefabInstance: {fileID: 8467519237043016352}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &8467519238129575927
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 7157605947128694780}
-    m_Modifications:
-    - target: {fileID: 5442117742155914594, guid: fc15c0dd56fd1cf4a9a016788d54d826, type: 3}
-      propertyPath: m_Name
-      value: Balloons
-      objectReference: {fileID: 0}
-    - target: {fileID: 9219909330259463673, guid: fc15c0dd56fd1cf4a9a016788d54d826, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.030999988
-      objectReference: {fileID: 0}
-    - target: {fileID: 9219909330259463673, guid: fc15c0dd56fd1cf4a9a016788d54d826, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.125
-      objectReference: {fileID: 0}
-    - target: {fileID: 9219909330259463673, guid: fc15c0dd56fd1cf4a9a016788d54d826, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9219909330259463673, guid: fc15c0dd56fd1cf4a9a016788d54d826, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9219909330259463673, guid: fc15c0dd56fd1cf4a9a016788d54d826, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9219909330259463673, guid: fc15c0dd56fd1cf4a9a016788d54d826, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9219909330259463673, guid: fc15c0dd56fd1cf4a9a016788d54d826, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9219909330259463673, guid: fc15c0dd56fd1cf4a9a016788d54d826, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9219909330259463673, guid: fc15c0dd56fd1cf4a9a016788d54d826, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9219909330259463673, guid: fc15c0dd56fd1cf4a9a016788d54d826, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9219909330259463673, guid: fc15c0dd56fd1cf4a9a016788d54d826, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 6437531721940673314, guid: fc15c0dd56fd1cf4a9a016788d54d826, type: 3}
