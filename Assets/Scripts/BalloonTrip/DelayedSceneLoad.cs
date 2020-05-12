@@ -5,8 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class DelayedSceneLoad : MonoBehaviour
 {
-	public int sceneIndex = 0;
+	[Tooltip("If -1, reload the active scene instead.")]
+	public int sceneIndex = -1;
 	public float restartDelay = 1f;
+
+	private void Awake() {
+		if(sceneIndex == -1) {
+			sceneIndex = SceneManager.GetActiveScene().buildIndex;
+		}
+	}
 
 	private void Start() {
 		StartCoroutine(DoLoad());
