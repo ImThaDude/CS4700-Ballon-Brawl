@@ -200,7 +200,8 @@ MonoBehaviour:
   parachuteVelocity: 2
   parachuteClampLerp: 0.1
   hasFainted: 0
-  faintImpulseJump: 250
+  faintImpulseJump: 300
+  faintDespawnDelay: 2
   groundMovementSpeed: 4
   groundCastLength: 0.5
   groundMask:

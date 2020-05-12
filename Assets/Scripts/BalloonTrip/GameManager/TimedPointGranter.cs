@@ -11,7 +11,7 @@ public class TimedPointGranter : MonoBehaviour
 
     private void OnEnable()
     {
-		timeOfNextReward = Time.time;
+		timeOfNextReward = Time.time + interval;
     }
 
     void Update()
