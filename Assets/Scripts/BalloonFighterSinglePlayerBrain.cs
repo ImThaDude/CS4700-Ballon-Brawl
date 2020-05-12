@@ -8,9 +8,9 @@ using UnityEngine.InputSystem;
 /// This is the interface between the PlayerInput component and
 /// the balloon fighter body.
 /// </summary>
-public class BalloonFighterPlayerBrain : MonoBehaviour
+public class BalloonFighterSinglePlayerBrain : MonoBehaviour
 {
-	public BalloonFighterBody body;
+	public BalloonFighterSinglePlayerBody body;
 
 	private void Awake() {
 		Assert.IsNotNull(body);
@@ -24,7 +24,7 @@ public class BalloonFighterPlayerBrain : MonoBehaviour
 	/// </summary>
 	/// <param name="context"></param>
 	public void MoveHorizontal(InputAction.CallbackContext context) {
-		body.MoveHorizontal(context.ReadValue<float>());
+		body.SetHorzontalMovement(context.ReadValue<float>());
 	}
 
 	/// <summary>
