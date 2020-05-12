@@ -20,7 +20,7 @@ TagManager:
   - BalloonCollision
   - PlatformCollision
   - PlayerFeetCollision
-  - 
+  - Hazard
   - 
   - 
   - 

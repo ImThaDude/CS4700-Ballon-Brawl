@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1526680796076835778}
   - component: {fileID: -8047062515945600716}
   - component: {fileID: -4987466685298532558}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: Balloon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popSound: {fileID: 8300000, guid: ed0535b6ed2b9c340bbe546b446d0719, type: 3}
+  points: 100
 --- !u!1001 &1526680795464520889
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -154,7 +155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8050352664943243621, guid: 6b826f6ad67afe74cb379f7769ebd657, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 6437531721940673314, guid: 6b826f6ad67afe74cb379f7769ebd657, type: 3}
