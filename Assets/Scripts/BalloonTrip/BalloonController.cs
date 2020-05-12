@@ -5,10 +5,12 @@ using UnityEngine;
 public class BalloonController : MonoBehaviour
 {
     public AudioClip popSound;
+	public int points = 100;
 
 	private void OnTriggerEnter2D(Collider2D other) {
 		AudioSource.PlayClipAtPoint(popSound, transform.position);
-		// TODO Give points
+
+		ScoreTracker.AddPoints(points);
 
 		Destroy(gameObject);
 	}
