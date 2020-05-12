@@ -12,7 +12,7 @@ using UnityEngine.Assertions;
 /// An outside script/component must fire off the functions
 /// to control what happens.
 /// </summary>
-public class BalloonFighterBody : MonoBehaviour
+public class BalloonFighterSinglePlayerBody : MonoBehaviour
 {
 	#region Config
 	public Rigidbody2D rb;

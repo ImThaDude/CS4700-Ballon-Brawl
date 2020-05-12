@@ -21,7 +21,7 @@ public class BalloonFighterHealth : MonoBehaviour
     }
 
     public Animator anim;
-    public BalloonFighterBody body;
+    public BalloonFighterSinglePlayerBody body;
 	public Logger logger;
 	public GameObject deathPrefab;
 
@@ -113,7 +113,7 @@ public class BalloonFighterHealth : MonoBehaviour
         }
 
 		// Control the balloon refilling while idle
-        if (body.CurrentState == BalloonFighterBody.State.Idle && Health == 0) {
+        if (body.CurrentState == BalloonFighterSinglePlayerBody.State.Idle && Health == 0) {
                 
 			//Counter for idle time
 			currBallonRecoveryTime += Time.deltaTime;

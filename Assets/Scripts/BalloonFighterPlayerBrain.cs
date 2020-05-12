@@ -10,7 +10,7 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class BalloonFighterPlayerBrain : MonoBehaviour
 {
-	public BalloonFighterBody body;
+	public BalloonFighterSinglePlayerBody body;
 
 	private void Awake() {
 		Assert.IsNotNull(body);
