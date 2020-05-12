@@ -33,10 +33,10 @@ public class BalloonFighterPlayerBrain : MonoBehaviour
 	/// <param name="context"></param>
 	public void Jump(InputAction.CallbackContext context) {
 		if(context.performed) {
-			body.SetJumpIntent(true);
+			body.SetJump(true);
 		}
 		else if(context.canceled) {
-			body.SetJumpIntent(false);
+			body.SetJump(false);
 		}
 	}
 }

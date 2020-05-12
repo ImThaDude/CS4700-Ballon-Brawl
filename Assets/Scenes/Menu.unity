@@ -517,6 +517,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 8467519238401904625, guid: bd78eb337531f934a97a6305f4144fd5, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8467519238401904629, guid: bd78eb337531f934a97a6305f4144fd5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.18

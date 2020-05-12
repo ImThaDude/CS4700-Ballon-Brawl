@@ -5407,18 +5407,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6448216823932951811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8886960121723237344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad6641b3bb36fd343a605b4f00d52c99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1679186379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5482,6 +5470,18 @@ MonoBehaviour:
   redZoneTime: 4.5
   currRedZoneTime: 0
   metadata: {fileID: 2871080154131239988}
+--- !u!114 &6448216823932951811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8886960121723237344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6641b3bb36fd343a605b4f00d52c99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2871080153309673420
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5681,6 +5681,10 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 1.125
       objectReference: {fileID: 0}
+    - target: {fileID: 7753055822045848405, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 8886960121723237368}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85996f72f7b81fd42a45c3a48d86fa63, type: 3}
 --- !u!1 &2871080154893987786 stripped
