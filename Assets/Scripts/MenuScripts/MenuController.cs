@@ -56,7 +56,7 @@ public class MenuController : MonoBehaviour
             if (timer <= 0)
             {
                 Debug.Log("Load Scene 2");
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene(2);
             }
         } 
 
