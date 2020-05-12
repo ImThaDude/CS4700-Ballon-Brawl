@@ -21,8 +21,9 @@ public class BalloonFighterHealth : MonoBehaviour
     }
 
     public Animator anim;
-    public BalloonFighterBody body;
+    public BalloonFighterSinglePlayerBody body;
 	public Logger logger;
+	public GameObject deathPrefab;
 
     public AudioClip balloonPopClip;
     public AudioClip balloonRecoverClip;
@@ -48,6 +49,15 @@ public class BalloonFighterHealth : MonoBehaviour
 
         Health++;
     }
+
+	public void Kill() {
+		Health = -1;
+		Destroy(gameObject, 2f);
+
+		if(deathPrefab != null) {
+			Instantiate(deathPrefab, transform.position, deathPrefab.transform.rotation, null);
+		}
+	}
 
 	private void OnHealthChanged() 
     {
@@ -103,7 +113,7 @@ public class BalloonFighterHealth : MonoBehaviour
         }
 
 		// Control the balloon refilling while idle
-        if (body.CurrentState == BalloonFighterBody.State.Idle && Health == 0) {
+        if (body.CurrentState == BalloonFighterSinglePlayerBody.State.Idle && Health == 0) {
                 
 			//Counter for idle time
 			currBallonRecoveryTime += Time.deltaTime;
