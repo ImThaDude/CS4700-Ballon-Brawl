@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/George Folder/NetowrkingMVP/ClientOnly.unity
     guid: a60bbde150504714e820e58e1ce4025f
-  - enabled: 0
+  - enabled: 1
     path: Assets/George Folder/MultiplayerGamemode/newGamemode - client.unity
     guid: d8cfb99189555d74e8a9b8d7ecad8c9d
   - enabled: 1
